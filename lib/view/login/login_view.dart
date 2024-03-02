@@ -41,7 +41,9 @@ class LoginView extends StatelessWidget {
             SizedBox(
               width: Get.width,
               child: CustomButton(
-                onPressed: () {},
+                onPressed: () {
+                  Get.offAllNamed(RoutesName.tabBar);
+                },
                 btntitle: 'Login',
                 backColor: theme.colorScheme.primary,
                 titleColor: theme.colorScheme.onPrimary,
