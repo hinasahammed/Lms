@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lms/res/routes/routes.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 final theme = ThemeData(
   colorScheme: ColorScheme.fromSeed(
@@ -8,6 +9,7 @@ final theme = ThemeData(
     brightness: Brightness.dark,
   ),
   useMaterial3: true,
+  textTheme: GoogleFonts.robotoMonoTextTheme(),
 );
 
 void main() {

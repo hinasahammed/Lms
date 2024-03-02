@@ -1,9 +1,24 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
 import 'package:lms/assets/images/image_asset.dart';
+import 'package:lms/res/routes/routes_name.dart';
 
-class SplashView extends StatelessWidget {
+class SplashView extends StatefulWidget {
   const SplashView({super.key});
+
+  @override
+  State<SplashView> createState() => _SplashViewState();
+}
+
+class _SplashViewState extends State<SplashView> {
+  @override
+  void initState() {
+    super.initState();
+    Timer(const Duration(seconds: 2), () => Get.toNamed(RoutesName.getStarted));
+  }
 
   @override
   Widget build(BuildContext context) {
