@@ -1,10 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:lms/assets/images/image_asset.dart';
 import 'package:lms/res/components/custom_button.dart';
+import 'package:lms/res/routes/routes_name.dart';
 
 class Getstarted extends StatelessWidget {
   const Getstarted({super.key});
@@ -52,7 +51,9 @@ class Getstarted extends StatelessWidget {
                           btntitle: 'Get Started',
                           backColor: theme.colorScheme.primary,
                           titleColor: theme.colorScheme.onPrimary,
-                          onPressed: () {},
+                          onPressed: () {
+                            Get.offAllNamed(RoutesName.login);
+                          },
                         ),
                       ),
                     ],

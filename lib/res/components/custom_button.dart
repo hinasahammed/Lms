@@ -26,7 +26,7 @@ class CustomButton extends StatelessWidget {
       onPressed: onPressed,
       child: Text(
         btntitle,
-        style: theme.textTheme.titleLarge!.copyWith(
+        style: theme.textTheme.bodyLarge!.copyWith(
           color: titleColor,
           fontWeight: FontWeight.w600,
         ),
