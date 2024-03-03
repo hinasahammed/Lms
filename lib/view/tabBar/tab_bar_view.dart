@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:lms/view/account/account_view.dart';
 import 'package:lms/view/enrolled/enrolled_view.dart';
 import 'package:lms/view/home/home_view.dart';
 import 'package:lms/view/search/search_view.dart';
@@ -18,7 +19,7 @@ class _TabBarViewState extends State<TabBarView> {
     const HomeView(),
     const SearchView(),
     const EnrolledView(),
-    const Center(child: Text('Account')),
+    const AccountView(),
   ];
   @override
   Widget build(BuildContext context) {

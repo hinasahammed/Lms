@@ -1,6 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:shimmer/shimmer.dart';
 
 class SearchViewCourses extends StatelessWidget {
   const SearchViewCourses({super.key});
@@ -22,18 +24,27 @@ class SearchViewCourses extends StatelessWidget {
           ),
           child: Column(
             children: [
-              Container(
-                height: Get.height * .18,
-                padding: const EdgeInsets.all(8.0),
-                decoration: BoxDecoration(
-                  color: Colors.amber,
-                  borderRadius: BorderRadius.circular(15),
-                  image: const DecorationImage(
-                    image: NetworkImage(
+              ClipRRect(
+                borderRadius: BorderRadius.circular(15),
+                child: CachedNetworkImage(
+                  height: Get.height * .18,
+                  width: double.infinity,
+                  imageUrl:
                       'https://d2908q01vomqb2.cloudfront.net/da4b9237bacccdf19c0760cab7aec4a8359010b0/2023/06/26/generative-ai-with-llms-1.png',
+                  fit: BoxFit.cover,
+                  placeholder: (context, url) => Shimmer.fromColors(
+                    baseColor: Colors.black.withOpacity(0.2),
+                    highlightColor: Colors.white54,
+                    enabled: true,
+                    child: Container(
+                      height: Get.height * .18,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color: Colors.black54,
+                      ),
                     ),
-                    fit: BoxFit.cover,
                   ),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
                 ),
               ),
               Text(

@@ -1,6 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:shimmer/shimmer.dart';
 
 class OngoingCourses extends StatelessWidget {
   const OngoingCourses({super.key});
@@ -18,17 +20,29 @@ class OngoingCourses extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 6),
             child: Row(
               children: [
-                Container(
-                  width: Get.width * .2,
-                  height: Get.height * .1,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    image: const DecorationImage(
-                      image: NetworkImage(
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(15),
+                  child: CachedNetworkImage(
+                    width: Get.width * .2,
+                    height: Get.height * .1,
+                    imageUrl:
                         'https://d2908q01vomqb2.cloudfront.net/da4b9237bacccdf19c0760cab7aec4a8359010b0/2023/06/26/generative-ai-with-llms-1.png',
+                    fit: BoxFit.cover,
+                    placeholder: (context, url) => Shimmer.fromColors(
+                      baseColor: Colors.black.withOpacity(0.2),
+                      highlightColor: Colors.white54,
+                      enabled: true,
+                      child: Container(
+                        width: Get.width * .2,
+                        height: Get.height * .1,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          color: Colors.black54,
+                        ),
                       ),
-                      fit: BoxFit.cover,
                     ),
+                    errorWidget: (context, url, error) =>
+                        const Icon(Icons.error),
                   ),
                 ),
                 const Gap(10),
