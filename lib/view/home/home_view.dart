@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
 import 'package:lms/res/components/ongoing_courses.dart';
 import 'package:lms/res/components/popular_course.dart';
+import 'package:lms/res/routes/routes_name.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -83,7 +85,9 @@ class HomeView extends StatelessWidget {
                   ),
                 ),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.toNamed(RoutesName.allCourses);
+                  },
                   child: Text(
                     'See all',
                     style: theme.textTheme.labelLarge!.copyWith(

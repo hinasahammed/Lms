@@ -22,13 +22,11 @@ class RegisterView extends StatelessWidget {
           children: [
             Image.asset(ImageAsset.loginImage),
             CustomTextFormField(
-              obscureText: false,
               controller: TextEditingController(),
               labelText: 'Username',
             ),
             const Gap(10),
             CustomTextFormField(
-              obscureText: false,
               controller: TextEditingController(),
               labelText: 'Email address',
             ),

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'package:lms/assets/icons/icons_asset.dart';
 import 'package:lms/res/components/account_tile.dart';
+import 'package:lms/res/routes/routes_name.dart';
 
 class AccountView extends StatelessWidget {
   const AccountView({super.key});
@@ -48,10 +50,13 @@ class AccountView extends StatelessWidget {
               ),
               imageUrl: IconsAsset.lightMode,
             ),
-            const AccountTile(
-              title: 'Edit profile',
-              trailing: Icon(Icons.arrow_circle_right),
+            AccountTile(
+              trailing: const Icon(Icons.arrow_circle_right),
               imageUrl: IconsAsset.edit,
+              onTap: () {
+                Get.toNamed(RoutesName.editProfile);
+              },
+              title: 'Edit profile',
             ),
             const AccountTile(
               title: 'Favorites',

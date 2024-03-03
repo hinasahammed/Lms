@@ -7,4 +7,7 @@ class RoutesName {
   static const String tabBar  = '/tab_bar';
   static const String home  = '/home_view';
   static const String search  = '/search_view';
+  static const String editProfile  = '/edit_profile';
+  static const String courseDetails  = '/course_details';
+  static const String allCourses  = '/all_courses';
 }

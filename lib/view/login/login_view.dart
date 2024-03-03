@@ -22,7 +22,6 @@ class LoginView extends StatelessWidget {
           children: [
             Image.asset(ImageAsset.loginImage),
             CustomTextFormField(
-              obscureText: false,
               controller: TextEditingController(),
               labelText: 'Email address',
             ),

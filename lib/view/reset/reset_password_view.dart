@@ -31,7 +31,6 @@ class ResetPassWordView extends StatelessWidget {
             CustomTextFormField(
               controller: TextEditingController(),
               labelText: 'Email address',
-              obscureText: false,
             ),
             const Gap(20),
             CustomButton(
