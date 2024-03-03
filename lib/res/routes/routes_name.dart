@@ -10,4 +10,5 @@ class RoutesName {
   static const String editProfile  = '/edit_profile';
   static const String courseDetails  = '/course_details';
   static const String allCourses  = '/all_courses';
+  static const String favorites  = '/favorite_view';
 }

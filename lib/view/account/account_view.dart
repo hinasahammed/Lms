@@ -58,10 +58,13 @@ class AccountView extends StatelessWidget {
               },
               title: 'Edit profile',
             ),
-            const AccountTile(
-              title: 'Favorites',
-              trailing: Icon(Icons.arrow_circle_right),
+            AccountTile(
+              trailing: const Icon(Icons.arrow_circle_right),
               imageUrl: IconsAsset.favorite,
+              onTap: () {
+                Get.toNamed(RoutesName.favorites);
+              },
+              title: 'Favorites',
             ),
             AccountTile(
               title: 'Total enrolled',

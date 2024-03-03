@@ -39,6 +39,7 @@ class LoginView extends StatelessWidget {
             ),
             SizedBox(
               width: Get.width,
+              height: 50,
               child: CustomButton(
                 onPressed: () {
                   Get.offAllNamed(RoutesName.tabBar);

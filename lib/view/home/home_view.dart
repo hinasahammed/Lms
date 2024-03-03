@@ -20,7 +20,9 @@ class HomeView extends StatelessWidget {
         centerTitle: true,
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Get.toNamed(RoutesName.favorites);
+            },
             icon: const Icon(Icons.favorite_border),
           )
         ],

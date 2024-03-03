@@ -34,52 +34,50 @@ class AllCoursesView extends StatelessWidget {
                 ),
               );
             },
-            child: Container(
-              width: 310,
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                color: theme.colorScheme.primaryContainer,
-                borderRadius: BorderRadius.circular(15),
-              ),
-              child: Column(
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(15),
-                    child: CachedNetworkImage(
-                      width: double.infinity,
-                      height: Get.height * .18,
-                      imageUrl: data.imageurl,
-                      fit: BoxFit.cover,
-                      placeholder: (context, url) => Shimmer.fromColors(
-                        baseColor: Colors.black.withOpacity(0.2),
-                        highlightColor: Colors.white54,
-                        enabled: true,
-                        child: Container(
-                          height: Get.height * .18,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            color: Colors.black54,
+            child: Card(
+              child: Container(
+                width: 310,
+                padding: const EdgeInsets.all(8),
+                child: Column(
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(15),
+                      child: CachedNetworkImage(
+                        width: double.infinity,
+                        height: Get.height * .18,
+                        imageUrl: data.imageurl,
+                        fit: BoxFit.cover,
+                        placeholder: (context, url) => Shimmer.fromColors(
+                          baseColor: Colors.black.withOpacity(0.2),
+                          highlightColor: Colors.white54,
+                          enabled: true,
+                          child: Container(
+                            height: Get.height * .18,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              color: Colors.black54,
+                            ),
                           ),
                         ),
+                        errorWidget: (context, url, error) =>
+                            const Icon(Icons.error),
                       ),
-                      errorWidget: (context, url, error) =>
-                          const Icon(Icons.error),
                     ),
-                  ),
-                  Text(
-                    data.courseTitle,
-                    style: theme.textTheme.bodyLarge!.copyWith(
-                      color: theme.colorScheme.onPrimaryContainer,
-                      fontWeight: FontWeight.w600,
+                    Text(
+                      data.courseTitle,
+                      style: theme.textTheme.bodyLarge!.copyWith(
+                        color: theme.colorScheme.onPrimaryContainer,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
-                  ),
-                  Text(
-                    "Skills you'll gain: Machine Learning, Natural Language Processing, Python Programming",
-                    style: theme.textTheme.labelLarge!.copyWith(
-                      color: theme.colorScheme.onPrimaryContainer,
+                    Text(
+                      "Skills you'll gain: Machine Learning, Natural Language Processing, Python Programming",
+                      style: theme.textTheme.labelLarge!.copyWith(
+                        color: theme.colorScheme.onPrimaryContainer,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           );

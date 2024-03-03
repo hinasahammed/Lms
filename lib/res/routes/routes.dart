@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:lms/res/routes/routes_name.dart';
 import 'package:lms/view/allCourses/all_courses_view.dart';
 import 'package:lms/view/editProfile/edit_profile_view.dart';
+import 'package:lms/view/favorite/favorite_view.dart';
 import 'package:lms/view/getStarted/get_started.dart';
 import 'package:lms/view/home/home_view.dart';
 import 'package:lms/view/login/login_view.dart';
@@ -52,6 +53,10 @@ class Routes {
         GetPage(
           name: RoutesName.allCourses,
           page: () => const AllCoursesView(),
+        ),
+        GetPage(
+          name: RoutesName.favorites,
+          page: () => const FavoriteView(),
         ),
       ];
 }

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "703477855263",
+    "project_id": "lmsserver-cc70f",
+    "storage_bucket": "lmsserver-cc70f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:703477855263:android:b839f672d70aa46611112a",
+        "android_client_info": {
+          "package_name": "com.example.lms"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB2OrMW8ylmCsDWMdRUP3_3Dt2u9GONN30"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

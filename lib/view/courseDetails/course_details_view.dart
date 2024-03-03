@@ -1,5 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:lms/models/course_model.dart';
@@ -63,7 +65,7 @@ class CourseDetailsView extends StatelessWidget {
                   Text(
                     courseData.courseDesc,
                     style: theme.textTheme.labelLarge!.copyWith(
-                      color: theme.colorScheme.onBackground.withOpacity(.7),
+                      color: theme.colorScheme.onBackground,
                     ),
                   ),
                   Text(
@@ -77,7 +79,7 @@ class CourseDetailsView extends StatelessWidget {
                     (e) => Text(
                       e,
                       style: theme.textTheme.labelLarge!.copyWith(
-                        color: theme.colorScheme.onBackground.withOpacity(.7),
+                        color: theme.colorScheme.onBackground,
                       ),
                     ),
                   ),
@@ -92,7 +94,7 @@ class CourseDetailsView extends StatelessWidget {
                     (e) => Text(
                       e,
                       style: theme.textTheme.labelLarge!.copyWith(
-                        color: theme.colorScheme.onBackground.withOpacity(.7),
+                        color: theme.colorScheme.onBackground,
                       ),
                     ),
                   ),
@@ -126,24 +128,33 @@ class CourseDetailsView extends StatelessWidget {
                       ],
                     ),
                   ),
+                  Align(
+                    alignment: Alignment.center,
+                    child: SizedBox(
+                      height: 50,
+                      child: CustomButton(
+                        btntitle: 'Add to favorite',
+                        backColor: theme.colorScheme.primary,
+                        titleColor: theme.colorScheme.onPrimary,
+                        onPressed: () {},
+                      ),
+                    ),
+                  ),
+                  const Gap(10),
+                  SizedBox(
+                    width: Get.width,
+                    height: 50,
+                    child: CustomButton(
+                      btntitle: 'Enroll now',
+                      backColor: theme.colorScheme.primary,
+                      titleColor: theme.colorScheme.onPrimary,
+                      onPressed: () {},
+                    ),
+                  ),
+                  const Gap(15)
                 ],
               ),
             ),
-            Row(
-              children: [
-                TextButton(
-                  onPressed: () {},
-                  child: const Text('Add to favorite'),
-                ),
-                CustomButton(
-                  btntitle: 'Enroll now',
-                  backColor: theme.colorScheme.primary,
-                  titleColor: theme.colorScheme.onPrimary,
-                  onPressed: () {},
-                ),
-              ],
-            ),
-            const Gap(15)
           ],
         ),
       ),

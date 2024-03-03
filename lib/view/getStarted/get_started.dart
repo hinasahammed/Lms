@@ -27,6 +27,7 @@ class Getstarted extends StatelessWidget {
                   padding: const EdgeInsets.all(10),
                   width: Get.width,
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
                         'Nourish Your Inner Skill',
