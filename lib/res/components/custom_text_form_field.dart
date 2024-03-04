@@ -26,7 +26,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
     final theme = Theme.of(context);
     return TextFormField(
       controller: widget.controller,
-      obscureText: !isVisible,
+      obscureText: widget.obscureText ? !isVisible : widget.obscureText,
       validator: widget.validator,
       style: theme.textTheme.bodyLarge!.copyWith(
         color: theme.colorScheme.onBackground,

@@ -1,3 +1,5 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
+import 'package:flutter/material.dart';
 import 'package:lms/models/course_model.dart';
 
 class Utils {
@@ -126,4 +128,30 @@ class Utils {
       ],
     )
   ];
+
+  static void showAwesomeSnackbar(
+    String title,
+    String message,
+    BuildContext context,
+    ContentType contentType,
+    double height,
+  ) {
+    final snackBar = SnackBar(
+      elevation: 0,
+      behavior: SnackBarBehavior.floating,
+      backgroundColor: Colors.transparent,
+      content: SizedBox(
+        height: height,
+        child: AwesomeSnackbarContent(
+          title: title,
+          message: message,
+          contentType: contentType,
+        ),
+      ),
+    );
+
+    ScaffoldMessenger.of(context)
+      ..hideCurrentSnackBar()
+      ..showSnackBar(snackBar);
+  }
 }

@@ -6,12 +6,14 @@ import 'package:lms/main.dart';
 import 'package:lms/res/components/custom_button.dart';
 import 'package:lms/res/components/custom_text_form_field.dart';
 import 'package:lms/res/routes/routes_name.dart';
+import 'package:lms/viewmodel/login/login_viewmodel.dart';
 
 class LoginView extends StatelessWidget {
   LoginView({super.key});
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
+    final loginViewModel = Get.put(LoginViewModel());
     return Scaffold(
       appBar: AppBar(
         title: const Text('Login'),
@@ -24,7 +26,7 @@ class LoginView extends StatelessWidget {
             children: [
               Image.asset(ImageAsset.loginImage),
               CustomTextFormField(
-                controller: TextEditingController(),
+                controller: loginViewModel.emailController.value,
                 validator: (value) {
                   String emailRegex = r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$';
                   RegExp regExp = RegExp(emailRegex);
@@ -41,7 +43,7 @@ class LoginView extends StatelessWidget {
               const Gap(10),
               CustomTextFormField(
                 obscureText: true,
-                controller: TextEditingController(),
+                controller: loginViewModel.passwordController.value,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return "enter an Password";
