@@ -5,8 +5,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lms/data/response/status.dart';
-import 'package:lms/res/routes/routes_name.dart';
 import 'package:lms/utils/utils.dart';
+import 'package:lms/view/login/login_view.dart';
 
 class RegisterViewmodel extends GetxController {
   Rx<Status> reqStatusResponse = Status.completed.obs;
@@ -41,7 +41,7 @@ class RegisterViewmodel extends GetxController {
             ContentType.success,
             110,
           );
-          Get.toNamed(RoutesName.login);
+          Get.to(LoginView());
         },
       );
       setReqStatusResponse(Status.completed);
@@ -50,43 +50,50 @@ class RegisterViewmodel extends GetxController {
       if (error.code == 'email-already-in-use') {
         if (context.mounted) {
           Utils.showAwesomeSnackbar(
-            'Warning',
+            'Failure',
             'The email address is already in use by another account.',
             context,
-            ContentType.warning,
+            ContentType.failure,
             110,
           );
         }
-      }
-      if (error.code == 'invalid-email') {
+      } else if (error.code == 'invalid-email') {
         if (context.mounted) {
           Utils.showAwesomeSnackbar(
-            'Warning',
+            'Failure',
             'The email address is address not valid.',
             context,
-            ContentType.warning,
+            ContentType.failure,
             110,
           );
         }
-      }
-      if (error.code == 'operation-not-allowed') {
+      } else if (error.code == 'operation-not-allowed') {
         if (context.mounted) {
           Utils.showAwesomeSnackbar(
-            'Warning',
+            'Failure',
             'Something went wrong.',
             context,
-            ContentType.warning,
+            ContentType.failure,
             110,
           );
         }
-      }
-      if (error.code == 'weak-password') {
+      } else if (error.code == 'weak-password') {
         if (context.mounted) {
           Utils.showAwesomeSnackbar(
-            'Warning',
-            'he password is not strong enough.',
+            'Failure',
+            'The password is not strong enough.',
             context,
-            ContentType.warning,
+            ContentType.failure,
+            110,
+          );
+        }
+      } else {
+        if (context.mounted) {
+          Utils.showAwesomeSnackbar(
+            'Failure',
+            'Something went wrong.',
+            context,
+            ContentType.failure,
             110,
           );
         }
@@ -108,5 +115,14 @@ class RegisterViewmodel extends GetxController {
         print(e);
       }
     }
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    userNameController.value.dispose();
+    emailController.value.dispose();
+    passwordController.value.dispose();
+    confirmPasswordController.value.dispose();
   }
 }

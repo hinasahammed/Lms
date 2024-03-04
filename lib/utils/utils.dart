@@ -1,5 +1,7 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:lms/models/course_model.dart';
 
 class Utils {
@@ -153,5 +155,32 @@ class Utils {
     ScaffoldMessenger.of(context)
       ..hideCurrentSnackBar()
       ..showSnackBar(snackBar);
+  }
+
+  static void showDialog(
+    BuildContext context,
+    void Function()? btnOkOnPress,
+    DialogType dialogType,
+    String title,
+    String desc,
+  ) {
+    final theme = Theme.of(context);
+    AwesomeDialog(
+      context: context,
+      descTextStyle: theme.textTheme.labelLarge!.copyWith(
+        color: theme.colorScheme.onBackground,
+      ),
+      titleTextStyle: theme.textTheme.bodyLarge!.copyWith(
+        color: theme.colorScheme.onBackground,
+      ),
+      dialogType: dialogType,
+      animType: AnimType.rightSlide,
+      title: title,
+      desc: desc,
+      btnCancelOnPress: () {
+        Get.back();
+      },
+      btnOkOnPress: btnOkOnPress,
+    ).show();
   }
 }

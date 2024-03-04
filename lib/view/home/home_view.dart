@@ -1,13 +1,18 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:lms/res/components/ongoing_courses.dart';
 import 'package:lms/res/components/popular_course.dart';
-import 'package:lms/res/routes/routes_name.dart';
+import 'package:lms/res/components/shimmer_list_ui.dart';
+import 'package:lms/view/allCourses/all_courses_view.dart';
+import 'package:lms/view/favorite/favorite_view.dart';
 
 class HomeView extends StatelessWidget {
-  const HomeView({super.key});
+  HomeView({super.key});
 
+  final auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -21,99 +26,131 @@ class HomeView extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              Get.toNamed(RoutesName.favorites);
+              Get.to(const FavoriteView());
             },
             icon: const Icon(Icons.favorite_border),
           )
         ],
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 16,
-          vertical: 10,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            RichText(
-              text: TextSpan(
-                children: [
-                  TextSpan(
-                    text: 'Welcome!\n',
-                    style: theme.textTheme.titleLarge!.copyWith(
-                      color: theme.colorScheme.onBackground,
-                    ),
-                  ),
-                  TextSpan(
-                    text: 'james',
-                    style: theme.textTheme.titleLarge!.copyWith(
-                      color: theme.colorScheme.onBackground,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const Gap(5),
-            RichText(
-              text: TextSpan(
-                children: [
-                  TextSpan(
-                    text: 'Find your favorite\n',
-                    style: theme.textTheme.headlineMedium!.copyWith(
-                      color: theme.colorScheme.onBackground,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  TextSpan(
-                    text: 'Course',
-                    style: theme.textTheme.headlineMedium!.copyWith(
-                      color: theme.colorScheme.primary,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const Gap(10),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Popular Courses',
-                  style: theme.textTheme.bodyLarge!.copyWith(
-                    color: theme.colorScheme.onBackground,
-                    fontWeight: FontWeight.w600,
-                  ),
+      body: StreamBuilder(
+        stream: FirebaseFirestore.instance.collection("user").snapshots(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return ListView.builder(
+                itemCount: 5,
+                itemBuilder: (context, index) => const ShimmerList());
+          }
+          if (snapshot.hasError) {
+            return Text('Error: ${snapshot.error}');
+          }
+          if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+            return Center(
+              child: Text(
+                'No data found!',
+                style: theme.textTheme.titleLarge!.copyWith(
+                  color: theme.colorScheme.onBackground,
                 ),
-                TextButton(
-                  onPressed: () {
-                    Get.toNamed(RoutesName.allCourses);
-                  },
-                  child: Text(
-                    'See all',
-                    style: theme.textTheme.labelLarge!.copyWith(
-                      color: theme.colorScheme.onBackground,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 320,
-              child: PopularCourse(),
-            ),
-            const Gap(10),
-            Text(
-              'Ongoing Courses',
-              style: theme.textTheme.bodyLarge!.copyWith(
-                color: theme.colorScheme.onBackground,
-                fontWeight: FontWeight.w600,
               ),
-            ),
-            const OngoingCourses(),
-          ],
-        ),
+            );
+          } else {
+            return SingleChildScrollView(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 10,
+                ),
+                child: Column(
+                  children: snapshot.data!.docs.map((userData) {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        RichText(
+                          text: TextSpan(
+                            children: [
+                              TextSpan(
+                                text: 'Welcome!\n',
+                                style: theme.textTheme.titleLarge!.copyWith(
+                                  color: theme.colorScheme.onBackground,
+                                ),
+                              ),
+                              TextSpan(
+                                text: userData['userName']
+                                        .toString()
+                                        .toUpperCase()[0] +
+                                    userData['userName']
+                                        .toString()
+                                        .substring(1),
+                                style: theme.textTheme.titleLarge!.copyWith(
+                                  color: theme.colorScheme.onBackground,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const Gap(5),
+                        RichText(
+                          text: TextSpan(
+                            children: [
+                              TextSpan(
+                                text: 'Find your favorite\n',
+                                style: theme.textTheme.headlineMedium!.copyWith(
+                                  color: theme.colorScheme.onBackground,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              TextSpan(
+                                text: 'Course',
+                                style: theme.textTheme.headlineMedium!.copyWith(
+                                  color: theme.colorScheme.primary,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const Gap(10),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'Popular Courses',
+                              style: theme.textTheme.bodyLarge!.copyWith(
+                                color: theme.colorScheme.onBackground,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                Get.to(const AllCoursesView());
+                              },
+                              child: Text(
+                                'See all',
+                                style: theme.textTheme.labelLarge!.copyWith(
+                                  color: theme.colorScheme.onBackground,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 320,
+                          child: PopularCourse(),
+                        ),
+                        const Gap(10),
+                        Text(
+                          'Ongoing Courses',
+                          style: theme.textTheme.bodyLarge!.copyWith(
+                            color: theme.colorScheme.onBackground,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        const OngoingCourses(),
+                      ],
+                    );
+                  }).toList(),
+                ));
+          }
+        },
       ),
     );
   }

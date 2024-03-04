@@ -28,7 +28,7 @@ class Routes {
         ),
         GetPage(
           name: RoutesName.register,
-          page: () =>  RegisterView(),
+          page: () => RegisterView(),
         ),
         GetPage(
           name: RoutesName.resetPassword,
@@ -36,11 +36,11 @@ class Routes {
         ),
         GetPage(
           name: RoutesName.tabBar,
-          page: () => const TabBarView(),
+          page: () => const CustomTabBarView(),
         ),
         GetPage(
           name: RoutesName.home,
-          page: () => const HomeView(),
+          page: () => HomeView(),
         ),
         GetPage(
           name: RoutesName.search,

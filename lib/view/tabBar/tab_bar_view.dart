@@ -5,18 +5,18 @@ import 'package:lms/view/enrolled/enrolled_view.dart';
 import 'package:lms/view/home/home_view.dart';
 import 'package:lms/view/search/search_view.dart';
 
-class TabBarView extends StatefulWidget {
-  const TabBarView({super.key});
+class CustomTabBarView extends StatefulWidget {
+  const CustomTabBarView({super.key});
 
   @override
-  State<TabBarView> createState() => _TabBarViewState();
+  State<CustomTabBarView> createState() => _CustomTabBarViewState();
 }
 
-class _TabBarViewState extends State<TabBarView> {
+class _CustomTabBarViewState extends State<CustomTabBarView> {
   var currentIndex = 0;
 
   final List _pages = [
-    const HomeView(),
+    HomeView(),
     const SearchView(),
     const EnrolledView(),
     const AccountView(),

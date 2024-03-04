@@ -3,7 +3,8 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:lms/assets/images/image_asset.dart';
 import 'package:lms/res/components/custom_button.dart';
-import 'package:lms/res/routes/routes_name.dart';
+import 'package:lms/view/login/login_view.dart';
+import 'package:lms/viewmodel/services/getStarted/get_stared_service.dart';
 
 class Getstarted extends StatelessWidget {
   const Getstarted({super.key});
@@ -47,13 +48,14 @@ class Getstarted extends StatelessWidget {
                       const Gap(15),
                       SizedBox(
                         width: Get.width * .6,
-                        height: Get.width * .15,
+                        height: 50,
                         child: CustomButton(
                           btntitle: 'Get Started',
                           backColor: theme.colorScheme.primary,
                           titleColor: theme.colorScheme.onPrimary,
                           onPressed: () {
-                            Get.offAllNamed(RoutesName.login);
+                            GetStartedService.setGetStarted(true);
+                            Get.to(LoginView());
                           },
                         ),
                       ),
