@@ -24,15 +24,15 @@ class Routes {
         ),
         GetPage(
           name: RoutesName.login,
-          page: () => const LoginView(),
+          page: () => LoginView(),
         ),
         GetPage(
           name: RoutesName.register,
-          page: () => const RegisterView(),
+          page: () =>  RegisterView(),
         ),
         GetPage(
           name: RoutesName.resetPassword,
-          page: () => const ResetPassWordView(),
+          page: () => ResetPassWordView(),
         ),
         GetPage(
           name: RoutesName.tabBar,
