@@ -4,6 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:lms/models/course_model.dart';
 import 'package:lms/res/components/custom_button.dart';
+import 'package:lms/viewmodel/courseDetails/course_details_viewmodel.dart';
 import 'package:shimmer/shimmer.dart';
 
 class CourseDetailsView extends StatelessWidget {
@@ -13,6 +14,7 @@ class CourseDetailsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final courseDetailsViewModel = Get.put(CourseDetailsViewModel());
     return Scaffold(
       appBar: AppBar(
         title: const Text('Course Details'),
@@ -134,7 +136,13 @@ class CourseDetailsView extends StatelessWidget {
                         btntitle: 'Add to favorite',
                         backColor: theme.colorScheme.primary,
                         titleColor: theme.colorScheme.onPrimary,
-                        onPressed: () {},
+                        onPressed: () {
+                          courseDetailsViewModel.addToFavorites(
+                            context,
+                            courseData.courseTitle,
+                            courseData.imageurl,
+                          );
+                        },
                       ),
                     ),
                   ),

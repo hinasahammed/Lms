@@ -12,7 +12,7 @@ class AccountServices {
       context,
       () async {
         await auth.signOut().then(
-              (value) => Get.to(LoginView()),
+              (value) => Get.offAll(LoginView()),
             );
       },
       DialogType.question,

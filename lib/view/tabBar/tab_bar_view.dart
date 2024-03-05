@@ -19,7 +19,7 @@ class _CustomTabBarViewState extends State<CustomTabBarView> {
     HomeView(),
     const SearchView(),
     const EnrolledView(),
-    const AccountView(),
+    AccountView(),
   ];
   @override
   Widget build(BuildContext context) {

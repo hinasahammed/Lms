@@ -48,16 +48,10 @@ class MyApp extends StatelessWidget {
               return FutureBuilder<bool>(
                 future: checkIfUserLoggedIn(),
                 builder: (context, snapshot) {
-                  if (snapshot.data != null) {
-                    if (snapshot.data!) {
-                      return const Getstarted();
-                    } else {
-                      return LoginView();
-                    }
+                  if (snapshot.data ?? false) {
+                    return LoginView();
                   } else {
-                    return const Center(
-                      child: Text('Something went wrong'),
-                    );
+                    return const Getstarted();
                   }
                 },
               );
@@ -70,6 +64,6 @@ class MyApp extends StatelessWidget {
 
   Future<bool> checkIfUserLoggedIn() async {
     final prefs = await SharedPreferences.getInstance();
-    return prefs.getBool('isLoggedIn') ?? false;
+    return prefs.getBool('Get_started') ?? false;
   }
 }

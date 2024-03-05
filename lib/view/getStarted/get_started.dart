@@ -55,7 +55,7 @@ class Getstarted extends StatelessWidget {
                           titleColor: theme.colorScheme.onPrimary,
                           onPressed: () {
                             GetStartedService.setGetStarted(true);
-                            Get.to(LoginView());
+                            Get.offAll(LoginView());
                           },
                         ),
                       ),
