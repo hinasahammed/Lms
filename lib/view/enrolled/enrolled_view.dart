@@ -10,7 +10,7 @@ class EnrolledView extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Enrolled Course'),
       ),
-      body: const EnrolledCourse(),
+      body: EnrolledCourse(),
     );
   }
 }

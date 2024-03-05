@@ -6,6 +6,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:lms/res/components/no_favorite_item_ui.dart';
 import 'package:lms/res/components/shimmer_list_ui.dart';
+import 'package:lms/viewmodel/controller/favorite/favorite_viewmodel.dart';
 import 'package:shimmer/shimmer.dart';
 
 class FavoriteView extends StatelessWidget {
@@ -13,6 +14,7 @@ class FavoriteView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final favoriteViewModel = Get.put(FavoriteViewModel());
     final theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
@@ -43,56 +45,68 @@ class FavoriteView extends StatelessWidget {
               ),
               shrinkWrap: true,
               children: snapshot.data!.docs.map((courseData) {
-                return Card(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 6),
-                    child: Row(
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(15),
-                          child: CachedNetworkImage(
-                            width: Get.width * .2,
-                            height: Get.height * .1,
-                            imageUrl: courseData['imageUrl'],
-                            fit: BoxFit.cover,
-                            placeholder: (context, url) => Shimmer.fromColors(
-                              baseColor: Colors.black.withOpacity(0.2),
-                              highlightColor: Colors.white54,
-                              enabled: true,
-                              child: Container(
-                                width: Get.width * .2,
-                                height: Get.height * .1,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15),
-                                  color: Colors.black54,
+                Map<String, dynamic> data = courseData.data();
+                return InkWell(
+                  onTap: () {
+                    favoriteViewModel.toCourseDetails(data);
+                  },
+                  child: Card(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 6),
+                      child: Row(
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(15),
+                            child: CachedNetworkImage(
+                              width: Get.width * .2,
+                              height: Get.height * .1,
+                              imageUrl: courseData['imageurl'],
+                              fit: BoxFit.cover,
+                              placeholder: (context, url) => Shimmer.fromColors(
+                                baseColor: Colors.black.withOpacity(0.2),
+                                highlightColor: Colors.white54,
+                                enabled: true,
+                                child: Container(
+                                  width: Get.width * .2,
+                                  height: Get.height * .1,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(15),
+                                    color: Colors.black54,
+                                  ),
                                 ),
                               ),
+                              errorWidget: (context, url, error) =>
+                                  const Icon(Icons.error),
                             ),
-                            errorWidget: (context, url, error) =>
-                                const Icon(Icons.error),
                           ),
-                        ),
-                        const Gap(10),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                              width: Get.width * .49,
-                              child: Text(
-                                courseData['courseName'],
-                                style: theme.textTheme.bodyLarge!.copyWith(
-                                  color: theme.colorScheme.onBackground,
+                          const Gap(10),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                width: Get.width * .49,
+                                child: Text(
+                                  courseData['courseTitle'],
+                                  style: theme.textTheme.bodyLarge!.copyWith(
+                                    color: theme.colorScheme.onBackground,
+                                  ),
                                 ),
                               ),
-                            ),
-                            IconButton(
-                              onPressed: () {},
-                              icon: const Icon(Icons.favorite),
-                            ),
-                          ],
-                        )
-                      ],
+                              IconButton(
+                                onPressed: () {
+                                  favoriteViewModel.deleteFavorite(
+                                      courseData['courseTitle']);
+                                },
+                                icon: Icon(
+                                  Icons.delete,
+                                  color: theme.colorScheme.error,
+                                ),
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 );
