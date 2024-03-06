@@ -31,10 +31,14 @@ class CourseModel {
 class ModuleModel {
   final String moduleHeading;
   final List<String> moduleDesc;
+  final List<String> videoUrl;
+  final List<bool> isCompleted;
 
   ModuleModel({
     required this.moduleHeading,
     required this.moduleDesc,
+    required this.videoUrl,
+    required this.isCompleted,
   });
 
   // Convert ModuleModel object to a map
@@ -42,6 +46,8 @@ class ModuleModel {
     return {
       'moduleHeading': moduleHeading,
       'moduleDesc': moduleDesc,
+      'videoUrl': videoUrl,
+      'isCompleted': isCompleted,
     };
   }
 }

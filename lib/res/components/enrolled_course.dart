@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:lms/res/components/enrolled_course_details.dart';
-import 'package:lms/res/components/no_favorite_item_ui.dart';
+import 'package:lms/res/components/no_enrolled_course_ui.dart';
 import 'package:lms/res/components/shimmer_list_ui.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -31,7 +31,7 @@ class EnrolledCourse extends StatelessWidget {
           return Text('Error: ${snapshot.error}');
         }
         if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-          return const NoFavoriteItemUi();
+          return const NoEnrolledCourseUi();
         } else {
           return ListView(
             padding: const EdgeInsets.symmetric(
@@ -41,7 +41,9 @@ class EnrolledCourse extends StatelessWidget {
             children: snapshot.data!.docs.map((enrolledCourse) {
               return InkWell(
                 onTap: () {
-                  Get.to(() => const EnrolledCourseDetails());
+                  Get.to(() => EnrolledCourseDetails(
+                        courseTitle: enrolledCourse['courseTitle'],
+                      ));
                 },
                 child: Card(
                   child: Padding(

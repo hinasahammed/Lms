@@ -45,8 +45,7 @@ class CourseDetailsViewModel extends GetxController {
       }
     } catch (e) {
       setfavoriteStatusResponse(Status.error);
-
-      print(e);
+      Utils.showToast('Something went wrong!');
     }
   }
 
@@ -65,10 +64,7 @@ class CourseDetailsViewModel extends GetxController {
           .where('courseTitle', isEqualTo: courseData.courseTitle)
           .get();
       if (existingEnrolled.docs.isEmpty) {
-        await enrolledref.add({
-          "courseTitle": courseData.courseTitle,
-          "imageurl": courseData.imageurl,
-        }).then((value) {
+        await enrolledref.add(courseData.toMap()).then((value) {
           setenrolledStatusResponse(Status.completed);
 
           Utils.showToast('Successfully enrolled the course');
@@ -80,7 +76,7 @@ class CourseDetailsViewModel extends GetxController {
     } catch (e) {
       setenrolledStatusResponse(Status.error);
 
-      print(e);
+      Utils.showToast('Something went wrong!');
     }
   }
 }

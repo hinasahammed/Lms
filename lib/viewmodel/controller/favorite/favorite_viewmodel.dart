@@ -26,21 +26,21 @@ class FavoriteViewModel extends GetxController {
     });
   }
 
-  void toCourseDetails( Map<String, dynamic> data){
-     CourseModel courseModel = CourseModel(
-                      courseTitle: data['courseTitle'],
-                      courseDesc: data['courseDesc'],
-                      whatYouWillLearnPoints:
-                          List<String>.from(data['whatYouWillLearnPoints']),
-                      requirmentDetails:
-                          List<String>.from(data['requirmentDetails']),
-                      imageurl: data['imageurl'],
-                      modulemodel: List<ModuleModel>.from(
-                          data['modulemodel'].map((x) => ModuleModel(
-                                moduleHeading: x['moduleHeading'],
-                                moduleDesc: List<String>.from(x['moduleDesc']),
-                              ))),
-                    );
-                    Get.to(() => CourseDetailsView(courseData: courseModel));
+  void toCourseDetails(Map<String, dynamic> data) {
+    CourseModel courseModel = CourseModel(
+      courseTitle: data['courseTitle'],
+      courseDesc: data['courseDesc'],
+      whatYouWillLearnPoints: List<String>.from(data['whatYouWillLearnPoints']),
+      requirmentDetails: List<String>.from(data['requirmentDetails']),
+      imageurl: data['imageurl'],
+      modulemodel:
+          List<ModuleModel>.from(data['modulemodel'].map((x) => ModuleModel(
+                moduleHeading: x['moduleHeading'],
+                moduleDesc: List<String>.from(x['moduleDesc']),
+                videoUrl: List<String>.from(x['videoUrl']),
+                isCompleted: List<bool>.from(x['isCompleted']),
+              ))),
+    );
+    Get.to(() => CourseDetailsView(courseData: courseModel));
   }
 }
