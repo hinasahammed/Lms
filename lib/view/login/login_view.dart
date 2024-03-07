@@ -3,8 +3,8 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:lms/assets/images/image_asset.dart';
 import 'package:lms/main.dart';
-import 'package:lms/res/components/custom_button.dart';
-import 'package:lms/res/components/custom_text_form_field.dart';
+import 'package:lms/res/components/commonWidget/custom_button.dart';
+import 'package:lms/res/components/commonWidget/custom_text_form_field.dart';
 import 'package:lms/view/register/register_view.dart';
 import 'package:lms/view/reset/reset_password_view.dart';
 import 'package:lms/viewmodel/controller/login/login_viewmodel.dart';
@@ -28,6 +28,9 @@ class LoginView extends StatelessWidget {
               children: [
                 Image.asset(ImageAsset.loginImage),
                 CustomTextFormField(
+              textInputAction: TextInputAction.next,
+
+                  keyboardType: TextInputType.emailAddress,
                   controller: loginViewModel.emailController.value,
                   validator: (value) {
                     String emailRegex = r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$';
@@ -44,6 +47,8 @@ class LoginView extends StatelessWidget {
                 ),
                 const Gap(10),
                 CustomTextFormField(
+              textInputAction: TextInputAction.done,
+
                   obscureText: true,
                   controller: loginViewModel.passwordController.value,
                   validator: (value) {
@@ -68,7 +73,10 @@ class LoginView extends StatelessWidget {
                 ),
                 TextButton(
                   onPressed: () {
-                    Get.to(ResetPassWordView());
+                    Get.to(
+                      ResetPassWordView(),
+                      transition: Transition.zoom,
+                    );
                   },
                   child: const Text('Forget your password?'),
                 ),
@@ -99,7 +107,10 @@ class LoginView extends StatelessWidget {
                     ),
                     TextButton(
                       onPressed: () {
-                        Get.to(RegisterView());
+                        Get.to(
+                          RegisterView(),
+                          transition: Transition.rightToLeft,
+                        );
                       },
                       child: const Text('Register'),
                     ),

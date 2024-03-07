@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lms/models/course_model.dart';
-import 'package:lms/utils/utils.dart';
+import 'package:lms/utils/course_list.dart';
 
 class SearchViewModel extends GetxController {
   final searchController = TextEditingController().obs;
@@ -18,7 +18,7 @@ class SearchViewModel extends GetxController {
   }
 
   void updateFilteredList() {
-    filteredList.assignAll(Utils.courseList.where(
+    filteredList.assignAll(CourseList.courseList.where(
       (element) => element.courseTitle
           .toLowerCase()
           .contains(searchController.value.text.toLowerCase()),

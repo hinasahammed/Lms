@@ -1,4 +1,3 @@
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
@@ -34,14 +33,13 @@ class RegisterViewmodel extends GetxController {
           .then(
         (value) {
           addUserData();
-          Utils.showAwesomeSnackbar(
-            'Success',
-            'Account created successfully',
-            context,
-            ContentType.success,
-            110,
-          );
+
           Get.to(LoginView());
+          Utils.showSnackbarToast(
+            context,
+            "Account created successfully, now try to login.",
+            Icons.check_circle_rounded,
+          );
         },
       );
       setReqStatusResponse(Status.completed);
@@ -49,52 +47,42 @@ class RegisterViewmodel extends GetxController {
       setReqStatusResponse(Status.error);
       if (error.code == 'email-already-in-use') {
         if (context.mounted) {
-          Utils.showAwesomeSnackbar(
-            'Failure',
-            'The email address is already in use by another account.',
+          Utils.showSnackbarToast(
             context,
-            ContentType.failure,
-            110,
+            "The email address is already in use by another account.",
+            Icons.error,
           );
         }
       } else if (error.code == 'invalid-email') {
         if (context.mounted) {
-          Utils.showAwesomeSnackbar(
-            'Failure',
-            'The email address is address not valid.',
+          Utils.showSnackbarToast(
             context,
-            ContentType.failure,
-            110,
+            "The email address is address not valid.",
+            Icons.error,
           );
         }
       } else if (error.code == 'operation-not-allowed') {
         if (context.mounted) {
-          Utils.showAwesomeSnackbar(
-            'Failure',
-            'Something went wrong.',
+          Utils.showSnackbarToast(
             context,
-            ContentType.failure,
-            110,
+            "Something went wrong.",
+            Icons.error,
           );
         }
       } else if (error.code == 'weak-password') {
         if (context.mounted) {
-          Utils.showAwesomeSnackbar(
-            'Failure',
-            'The password is not strong enough.',
+          Utils.showSnackbarToast(
             context,
-            ContentType.failure,
-            110,
+            "The password is not strong enough.",
+            Icons.error,
           );
         }
       } else {
         if (context.mounted) {
-          Utils.showAwesomeSnackbar(
-            'Failure',
-            'Something went wrong.',
+          Utils.showSnackbarToast(
             context,
-            ContentType.failure,
-            110,
+            "Something went wrong.",
+            Icons.error,
           );
         }
       }

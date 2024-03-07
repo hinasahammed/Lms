@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:lms/assets/images/image_asset.dart';
-import 'package:lms/res/components/custom_button.dart';
-import 'package:lms/res/components/custom_text_form_field.dart';
+import 'package:lms/res/components/commonWidget/custom_button.dart';
+import 'package:lms/res/components/commonWidget/custom_text_form_field.dart';
 import 'package:lms/view/login/login_view.dart';
 import 'package:lms/viewmodel/controller/register/register_viewmodel.dart';
 
@@ -27,6 +27,8 @@ class RegisterView extends StatelessWidget {
               children: [
                 Image.asset(ImageAsset.loginImage),
                 CustomTextFormField(
+              textInputAction: TextInputAction.next,
+
                   controller: registerViewmodel.userNameController.value,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -41,6 +43,9 @@ class RegisterView extends StatelessWidget {
                 ),
                 const Gap(10),
                 CustomTextFormField(
+              textInputAction: TextInputAction.next,
+
+                  keyboardType: TextInputType.emailAddress,
                   controller: registerViewmodel.emailController.value,
                   validator: (value) {
                     String emailRegex = r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$';
@@ -57,6 +62,8 @@ class RegisterView extends StatelessWidget {
                 ),
                 const Gap(10),
                 CustomTextFormField(
+              textInputAction: TextInputAction.next,
+
                   obscureText: true,
                   controller: registerViewmodel.passwordController.value,
                   validator: (value) {
@@ -81,6 +88,8 @@ class RegisterView extends StatelessWidget {
                 ),
                 const Gap(10),
                 CustomTextFormField(
+              textInputAction: TextInputAction.done,
+
                   obscureText: true,
                   controller: registerViewmodel.confirmPasswordController.value,
                   validator: (value) {
@@ -120,7 +129,10 @@ class RegisterView extends StatelessWidget {
                     ),
                     TextButton(
                       onPressed: () {
-                        Get.to(LoginView());
+                        Get.to(
+                          LoginView(),
+                          transition: Transition.leftToRight,
+                        );
                       },
                       child: const Text('Login'),
                     ),

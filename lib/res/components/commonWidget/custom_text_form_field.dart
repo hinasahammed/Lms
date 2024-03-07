@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 
+
 class CustomTextFormField extends StatefulWidget {
   final TextEditingController controller;
   final String labelText;
   final bool obscureText;
   final String? Function(String?)? validator;
+  final TextInputType? keyboardType;
+  final TextInputAction textInputAction;
 
   const CustomTextFormField({
     super.key,
@@ -12,6 +15,8 @@ class CustomTextFormField extends StatefulWidget {
     required this.labelText,
     this.obscureText = false,
     this.validator,
+    this.keyboardType = TextInputType.text,
+   required this.textInputAction,
   });
 
   @override
@@ -27,6 +32,8 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
     return TextFormField(
       controller: widget.controller,
       obscureText: widget.obscureText ? !isVisible : widget.obscureText,
+      keyboardType: widget.keyboardType,
+      textInputAction: widget.textInputAction,
       validator: widget.validator,
       style: theme.textTheme.bodyLarge!.copyWith(
         color: theme.colorScheme.onBackground,

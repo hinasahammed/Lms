@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:lms/res/components/search_view_course.dart';
+import 'package:lms/res/components/searchViewComponents/search_view_course.dart';
 import 'package:lms/viewmodel/controller/search/search_viewmodel.dart';
 
 class SearchView extends StatelessWidget {

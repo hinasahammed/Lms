@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:lms/utils/utils.dart';
+import 'package:lms/utils/course_list.dart';
 import 'package:lms/view/courseDetails/course_details_view.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -22,10 +22,10 @@ class AllCoursesView extends StatelessWidget {
           vertical: 10,
         ),
         shrinkWrap: true,
-        itemCount: Utils.courseList.length,
+        itemCount: CourseList.courseList.length,
         separatorBuilder: (context, index) => const Gap(10),
         itemBuilder: (context, index) {
-          var data = Utils.courseList[index];
+          var data = CourseList.courseList[index];
           return InkWell(
             onTap: () {
               Get.to(

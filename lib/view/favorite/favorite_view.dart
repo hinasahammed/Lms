@@ -4,8 +4,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:lms/res/components/no_favorite_item_ui.dart';
-import 'package:lms/res/components/shimmer_list_ui.dart';
+import 'package:lms/res/components/favoriteViewComponents/no_favorite_item_ui.dart';
+import 'package:lms/res/components/commonWidget/shimmer_list_ui.dart';
 import 'package:lms/viewmodel/controller/favorite/favorite_viewmodel.dart';
 import 'package:shimmer/shimmer.dart';
 

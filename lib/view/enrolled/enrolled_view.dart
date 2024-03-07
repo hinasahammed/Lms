@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lms/res/components/enrolled_course.dart';
+import 'package:lms/res/components/enrolledViewComponents/enrolled_course.dart';
 
 class EnrolledView extends StatelessWidget {
   const EnrolledView({super.key});

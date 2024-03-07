@@ -3,9 +3,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:lms/res/components/ongoing_courses.dart';
-import 'package:lms/res/components/popular_course.dart';
-import 'package:lms/res/components/shimmer_list_ui.dart';
+import 'package:lms/res/components/homeViewComponents/ongoing_courses.dart';
+import 'package:lms/res/components/homeViewComponents/popular_course.dart';
+import 'package:lms/res/components/commonWidget/shimmer_list_ui.dart';
 import 'package:lms/view/allCourses/all_courses_view.dart';
 import 'package:lms/view/favorite/favorite_view.dart';
 
@@ -25,7 +25,7 @@ class HomeView extends StatelessWidget {
         centerTitle: true,
         actions: [
           IconButton(
-            onPressed: () {
+              onPressed: () {
               Get.to(const FavoriteView());
             },
             icon: const Icon(Icons.favorite_border),

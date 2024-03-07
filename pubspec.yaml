@@ -49,6 +49,7 @@ dependencies:
   awesome_dialog: ^3.2.0
   fluttertoast: ^8.2.4
   video_player: ^2.8.2
+  another_flushbar: ^1.12.30
 
 dev_dependencies:
   flutter_test:

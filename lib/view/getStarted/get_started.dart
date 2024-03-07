@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:lms/assets/images/image_asset.dart';
-import 'package:lms/res/components/custom_button.dart';
+import 'package:lms/res/components/commonWidget/custom_button.dart';
 import 'package:lms/view/login/login_view.dart';
 import 'package:lms/viewmodel/services/getStarted/get_stared_service.dart';
 
@@ -55,7 +55,7 @@ class Getstarted extends StatelessWidget {
                           titleColor: theme.colorScheme.onPrimary,
                           onPressed: () {
                             GetStartedService.setGetStarted(true);
-                            Get.offAll(LoginView());
+                            Get.offAll(() =>LoginView());
                           },
                         ),
                       ),

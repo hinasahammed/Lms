@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:lms/assets/icons/icons_asset.dart';
-import 'package:lms/res/components/account_tile.dart';
-import 'package:lms/res/components/shimmer_list_ui.dart';
+import 'package:lms/res/components/accountViewComponents/account_tile.dart';
+import 'package:lms/res/components/commonWidget/shimmer_list_ui.dart';
 import 'package:lms/view/editProfile/edit_profile_view.dart';
 import 'package:lms/view/favorite/favorite_view.dart';
 import 'package:lms/viewmodel/services/account/account_services.dart';
@@ -28,8 +28,9 @@ class AccountView extends StatelessWidget {
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return ListView.builder(
-                itemCount: 5,
-                itemBuilder: (context, index) => const ShimmerList());
+              itemCount: 5,
+              itemBuilder: (context, index) => const ShimmerList(),
+            );
           }
           if (snapshot.hasError) {
             return Text('Error: ${snapshot.error}');
@@ -56,7 +57,7 @@ class AccountView extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Hi,\n${userData['userName']}',
+                    'Hi,\n${userData['userName'].toString().toUpperCase()[0] + userData['userName'].substring(1)}',
                     style: theme.textTheme.titleLarge!.copyWith(
                       color: theme.colorScheme.onBackground,
                       fontWeight: FontWeight.w500,
@@ -98,22 +99,34 @@ class AccountView extends StatelessWidget {
                     },
                     title: 'Favorites',
                   ),
-                  AccountTile(
-                    title: 'Total enrolled',
-                    trailing: Container(
-                      padding: const EdgeInsets.all(6),
-                      decoration: BoxDecoration(
-                        color: theme.colorScheme.onBackground.withOpacity(.2),
-                        shape: BoxShape.circle,
-                      ),
-                      child: Text(
-                        '4',
-                        style: theme.textTheme.bodyLarge!.copyWith(
-                          color: theme.colorScheme.onBackground,
+                  StreamBuilder(
+                    stream: FirebaseFirestore.instance
+                        .collection("user")
+                        .doc(auth.currentUser!.uid)
+                        .collection('enrolledCourse')
+                        .snapshots(),
+                    builder: (context, snapshot) {
+                      return AccountTile(
+                        title: 'Total enrolled',
+                        trailing: Container(
+                          padding: const EdgeInsets.all(8),
+                          decoration: BoxDecoration(
+                            color:
+                                theme.colorScheme.onBackground.withOpacity(.2),
+                            shape: BoxShape.circle,
+                          ),
+                          child: Text(
+                            snapshot.data != null
+                                ? snapshot.data!.docs.length.toString()
+                                : "",
+                            style: theme.textTheme.bodyLarge!.copyWith(
+                              color: theme.colorScheme.onBackground,
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                    imageUrl: IconsAsset.enrolled,
+                        imageUrl: IconsAsset.enrolled,
+                      );
+                    },
                   ),
                   AccountTile(
                     onTap: () {

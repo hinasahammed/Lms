@@ -64,7 +64,10 @@ class CourseDetailsViewModel extends GetxController {
           .where('courseTitle', isEqualTo: courseData.courseTitle)
           .get();
       if (existingEnrolled.docs.isEmpty) {
-        await enrolledref.add(courseData.toMap()).then((value) {
+        await enrolledref.add({
+          "courseTitle": courseData.courseTitle,
+          "imageurl": courseData.imageurl,
+        }).then((value) {
           setenrolledStatusResponse(Status.completed);
 
           Utils.showToast('Successfully enrolled the course');

@@ -1,4 +1,3 @@
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -30,15 +29,12 @@ class LoginViewModel extends GetxController {
           .then(
         (value) {
           setReqStatusResponse(Status.completed);
-
-          Utils.showAwesomeSnackbar(
-            'Succes',
-            'Login Successfull',
+          Get.offAll(() => const CustomTabBarView());
+          Utils.showSnackbarToast(
             context,
-            ContentType.success,
-            110,
+            'Login Successfull',
+            Icons.check_circle_rounded,
           );
-          Get.offAll(const CustomTabBarView());
         },
       );
     } on FirebaseAuthException catch (e) {
@@ -46,52 +42,50 @@ class LoginViewModel extends GetxController {
 
       if (e.code == "wrong-password") {
         if (context.mounted) {
-          Utils.showAwesomeSnackbar(
-            'Failure',
-            'The password is invalid for the given email',
+          Utils.showSnackbarToast(
             context,
-            ContentType.failure,
-            110,
+            "The password is invalid for the given email",
+            Icons.error,
           );
         }
       } else if (e.code == "invalid-email") {
         if (context.mounted) {
-          Utils.showAwesomeSnackbar(
-            'Failure',
-            'The email address is not valid.',
+          Utils.showSnackbarToast(
             context,
-            ContentType.failure,
-            110,
+            "The email address is not valid.",
+            Icons.error,
           );
         }
       } else if (e.code == "user-disabled") {
         if (context.mounted) {
-          Utils.showAwesomeSnackbar(
-            'Failure',
-            'the user corresponding to the given email has been disabled.',
+          Utils.showSnackbarToast(
             context,
-            ContentType.failure,
-            110,
+            "The user corresponding to the given email has been disabled.",
+            Icons.error,
           );
         }
       } else if (e.code == "user-not-found") {
         if (context.mounted) {
-          Utils.showAwesomeSnackbar(
-            'Failure',
-            'There is no user corresponding to the given email.',
+          Utils.showSnackbarToast(
             context,
-            ContentType.failure,
-            110,
+            "There is no user corresponding to the given email.",
+            Icons.error,
+          );
+        }
+      } else if (e.code == "invalid-credential") {
+        if (context.mounted) {
+          Utils.showSnackbarToast(
+            context,
+            "Invalid email or password.",
+            Icons.error,
           );
         }
       } else {
         if (context.mounted) {
-          Utils.showAwesomeSnackbar(
-            'Failure',
-            'Something went wrong.',
+          Utils.showSnackbarToast(
             context,
-            ContentType.warning,
-            110,
+            "Something went wrong.",
+            Icons.error,
           );
         }
       }
