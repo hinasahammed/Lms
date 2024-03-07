@@ -51,7 +51,6 @@ class FavoriteViewModel extends GetxController {
                 moduleHeading: x['moduleHeading'],
                 moduleDesc: List<String>.from(x['moduleDesc']),
                 videoUrl: List<String>.from(x['videoUrl']),
-                isCompleted: List<bool>.from(x['isCompleted']),
               ))),
     );
     Get.to(() => CourseDetailsView(courseData: courseModel));

@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:lms/res/components/commonWidget/shimmer_list_ui.dart';
-import 'package:lms/res/components/enrolledViewComponents/no_enrolled_course_ui.dart';
 import 'package:shimmer/shimmer.dart';
 
 class OngoingCourses extends StatelessWidget {
@@ -30,9 +29,15 @@ class OngoingCourses extends StatelessWidget {
           return Text('Error: ${snapshot.error}');
         }
         if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-          return const NoCourseDataUi(
-            title: "No ongoing Courses",
-            subTitle: "You haven't enrolled any course",
+          return Center(
+            child: Text(
+              "No ongoing Courses\n You haven't enrolled any course",
+              style: theme.textTheme.bodyLarge!.copyWith(
+                color: theme.colorScheme.onBackground,
+                fontWeight: FontWeight.w600,
+              ),
+              textAlign: TextAlign.center,
+            ),
           );
         } else {
           return ListView.builder(

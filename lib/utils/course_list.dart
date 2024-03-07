@@ -34,11 +34,6 @@ class CourseList {
             "https://drive.google.com/uc?export=download&id=1EenrP8qqggUsmcNJWNUFWz9bD-AQeayZ",
             "https://drive.google.com/uc?export=download&id=1uQb2MxE3155PGpMl1BQEDT_bWga3wqxR",
           ],
-          isCompleted: [
-            false,
-            false,
-            false,
-          ],
         ),
         ModuleModel(
           moduleHeading: "Module 2: Python Basics",
@@ -51,11 +46,6 @@ class CourseList {
             "https://drive.google.com/uc?export=download&id=1hAjpgzDo7DaAuCOl0wncM8ZMpm5Rc69r",
             "https://drive.google.com/uc?export=download&id=1opIzGcGKBb94Rx2zep9GCTdbES-FQJK5",
             "https://drive.google.com/uc?export=download&id=1C4Lx7DD7iBdfedJ63I_8WZiZdPOd1SAB",
-          ],
-          isCompleted: [
-            false,
-            false,
-            false,
           ],
         ),
         ModuleModel(
@@ -74,13 +64,6 @@ class CourseList {
             "https://drive.google.com/uc?export=download&id=1Vgeg3E9FEL0tttW_FJgHnbnHVRn_sFQR",
             "https://drive.google.com/uc?export=download&id=1YUPIdL49SCuE88npIp8tHHKT1KxUH5aq",
           ],
-          isCompleted: [
-            false,
-            false,
-            false,
-            false,
-            false,
-          ],
         ),
         ModuleModel(
           moduleHeading: "Module 4: Control Flow",
@@ -91,10 +74,6 @@ class CourseList {
           videoUrl: [
             "https://drive.google.com/uc?export=download&id=1TML5iFMllCq6d38_Wg3D031uFx-c6sQL",
             "https://drive.google.com/uc?export=download&id=1bgS6qpdAdsDlF-VwyOETqQXB0uV7m3dM",
-          ],
-          isCompleted: [
-            false,
-            false,
           ],
         ),
         ModuleModel(
@@ -107,10 +86,6 @@ class CourseList {
             "https://drive.google.com/uc?export=download&id=1KB1H5qR6Rro3nJTcDx6jtHyeUDfY97XA",
             "https://drive.google.com/uc?export=download&id=1m_fjScYug1OWyVRsl506XwDxf08fZvok",
           ],
-          isCompleted: [
-            false,
-            false,
-          ],
         ),
         ModuleModel(
           moduleHeading: "Module 6: Problem-solving with Python",
@@ -121,10 +96,6 @@ class CourseList {
           videoUrl: [
             "https://drive.google.com/uc?export=download&id=1mUUQ86n7ojhoOHdTkEzAeObCt7ail11p",
             "https://drive.google.com/uc?export=download&id=1mUUQ86n7ojhoOHdTkEzAeObCt7ail11p",
-          ],
-          isCompleted: [
-            false,
-            false,
           ],
         )
       ],
@@ -158,11 +129,6 @@ class CourseList {
             "https://drive.google.com/uc?export=download&id=1Sf1xWdsk3ZWMfF4xXotO7ntTLQTsgv9p",
             "https://drive.google.com/uc?export=download&id=1RBgtAlLCH1GEgddTfQFYANU7b_mp_mNA",
           ],
-          isCompleted: [
-            false,
-            false,
-            false,
-          ],
         ),
         ModuleModel(
           moduleHeading: "Module 2: HTML Basics",
@@ -177,12 +143,6 @@ class CourseList {
             "https://drive.google.com/uc?export=download&id=1O6lJc494I-KsM1IGWBgvghB3_Mez_83-",
             "https://drive.google.com/uc?export=download&id=1TtjtX_L9zDse6amz4IHXLc8EdVlOH7s8",
             "https://drive.google.com/uc?export=download&id=1EtmSfAvPUXXa815tRRGrbEsIUTsYTKyY",
-          ],
-          isCompleted: [
-            false,
-            false,
-            false,
-            false,
           ],
         ),
         ModuleModel(
@@ -199,12 +159,6 @@ class CourseList {
             "https://drive.google.com/uc?export=download&id=1B9pVypJYmfmq5bdgKV6BeTInpVqs7d9I",
             "https://drive.google.com/file/d/14uhq02crm1Rm6dhXg0k2GYB3L96QthKY/view?usp=sharing",
           ],
-          isCompleted: [
-            false,
-            false,
-            false,
-            false,
-          ],
         ),
         ModuleModel(
           moduleHeading: "Module 4: Introduction to JavaScript",
@@ -220,11 +174,130 @@ class CourseList {
             "https://drive.google.com/uc?export=download&id=1gMO-rwdh5hbUUmGFaMRg9Gtv0jO0A6cD",
             "https://drive.google.com/uc?export=download&id=1FICgpf0zAdlL2KD6CzqjFvaZcLtGWfo-",
           ],
-          isCompleted: [
-            false,
-            false,
-            false,
-            false,
+        ),
+      ],
+    ),
+    CourseModel(
+      courseTitle: "Demystifying the Tech World",
+      courseDesc:
+          "This course is designed for anyone with little to no prior experience in the world of technology. It will equip you with the fundamental knowledge and skills to navigate the digital landscape confidently.",
+      whatYouWillLearnPoints: [
+        "◻Understand the basic components of a computer and their functions.",
+        "◻Gain familiarity with essential software applications like web browsers, word processors, and email clients.",
+        "◻Learn how to safely and effectively navigate the internet.",
+        "◻Discover how to stay secure online and protect your privacy.",
+        "◻Explore various digital tools and resources to enhance your productivity and communication.",
+      ],
+      requirmentDetails: [
+        "◻A computer with internet access",
+        "◻Basic willingness to learn and explore",
+      ],
+      imageurl:
+          "https://media.licdn.com/dms/image/D4E10AQEILB0gxFPUbg/image-shrink_800/0/1699971975643?e=2147483647&v=beta&t=PQ_PZzv6zyKjWOdQDbW7ujEziaBO3sNZvEQ5gx96yaY",
+      modulemodel: [
+        ModuleModel(
+          moduleHeading: "Module 1: Introduction to Computers",
+          moduleDesc: [
+            "◻What is a computer?",
+            "◻Hardware vs. Software",
+            "◻Different types of computers",
+            "◻Common computer components and their functions",
+          ],
+          videoUrl: [
+            "https://drive.google.com/uc?export=download&id=1Xm5HQp9eimfYKsjJxJ0_fJjpgmV6w5R6",
+            "https://drive.google.com/uc?export=download&id=1EMMcb8ZXhzWyJzZuZUn6z8qFO3UxpIyO",
+            "https://drive.google.com/uc?export=download&id=1OWcCghqCkdYE5P8mWfKGtuYobaek4eYK",
+            "https://drive.google.com/uc?export=download&id=167-WZAvXDZXdl-VTvAUjl4Hv2Zt442o6",
+          ],
+        ),
+        ModuleModel(
+          moduleHeading: "Module 2: Operating Systems",
+          moduleDesc: [
+            "◻Understanding operating systems",
+            "◻Basic functionalities of popular operating systems (Windows, macOS)",
+            "◻User interface and navigation",
+          ],
+          videoUrl: [
+            "https://drive.google.com/uc?export=download&id=1T8_Yd_Y-8k0XDd3rMNOxSpvFlZjQjTIM",
+            "https://drive.google.com/uc?export=download&id=1WSujrpkrtNchKFEwDoz0RjGE8nfr_QPZ",
+            "https://drive.google.com/uc?export=download&id=1alBALFGnmXQ4WRfCNHeKIaPXsk2fI8j3",
+          ],
+        ),
+        ModuleModel(
+          moduleHeading: "Module 3: Essential Software Applications",
+          moduleDesc: [
+            "◻Introduction to web browsers and internet browsing",
+            "◻Exploring word processing software (e.g., Microsoft Word, Google Docs)",
+            "◻Working with spreadsheets (e.g., Microsoft Excel, Google Sheets)",
+          ],
+          videoUrl: [],
+        ),
+        ModuleModel(
+          moduleHeading: "Module 4: Internet Fundamentals",
+          moduleDesc: [
+            "◻Connecting to the internet",
+            "◻Understanding web addresses and URLs",
+            "◻Searching the web effectively",
+            "◻Online safety and security measures",
+          ],
+          videoUrl: [
+            "https://drive.google.com/uc?export=download&id=16kvqIk9BIN1Gozfys7XGvNIF8IsAcd7g",
+            "https://drive.google.com/uc?export=download&id=1msFZnzeae2Go8xumjVHeIaYiSbgO8hih",
+            "https://drive.google.com/uc?export=download&id=1e6WxKVoKRfFEvbfRaMDVpvu4go8rppbB",
+          ],
+        )
+      ],
+    ),
+    CourseModel(
+      courseTitle: "Introduction to Programming for Beginners",
+      courseDesc:
+          "Have you ever wondered how the websites and apps you use are created? This course introduces you to the fascinating world of programming, where you'll learn how to code and bring your creative ideas to life!",
+      whatYouWillLearnPoints: [
+        "◻Understand the basic principles of programming logic and problem-solving.",
+        "◻Get familiar with fundamental programming concepts like variables, data types, and control flow.",
+        "◻Learn a beginner-friendly programming language like Python (or Scratch for a more visual approach).",
+        "◻Write basic programs to perform simple tasks and create interactive experiences.",
+        "◻Spark your creativity and explore the potential of coding in various fields.",
+      ],
+      requirmentDetails: [
+        "◻A computer with internet access",
+        "◻A curious mind and a desire to learn",
+        "◻No prior programming experience needed",
+      ],
+      imageurl:
+          "https://dotnettrickscloud.blob.core.windows.net/article/3720230518234845.webp",
+      modulemodel: [
+        ModuleModel(
+          moduleHeading: "Module 1: Programming Fundamentals",
+          moduleDesc: [
+            "◻What is programming and what can you do with it?",
+            "◻Introduction to different programming languages",
+          ],
+          videoUrl: [
+            "https://drive.google.com/uc?export=download&id=1IXi_Y9q4YlRGAu4-xoJdoqE_PwTAKl7A",
+            "https://drive.google.com/uc?export=download&id=1IXi_Y9q4YlRGAu4-xoJdoqE_PwTAKl7A",
+          ],
+        ),
+        ModuleModel(
+          moduleHeading: "Module 2: Your First Steps in Coding",
+          moduleDesc: [
+            "◻Setting up your coding environment",
+            "◻Learning the syntax and structure of your chosen language",
+          ],
+          videoUrl: [
+            "https://drive.google.com/uc?export=download&id=1IXi_Y9q4YlRGAu4-xoJdoqE_PwTAKl7A",
+            "https://drive.google.com/uc?export=download&id=1R69IvYWv_ajbqvlMc9HQZb1bJsmJvVb2",
+          ],
+        ),
+        ModuleModel(
+          moduleHeading: "Module 3: Building Blocks of Code",
+          moduleDesc: [
+            "◻Working with variables and data types (numbers, text, booleans)",
+            "◻Using operators to perform calculations and comparisons",
+          ],
+          videoUrl: [
+            "https://drive.google.com/uc?export=download&id=10rkgbdBpV2qXr2XugPEeuCFri4KRhXWh",
+            "https://drive.google.com/uc?export=download&id=1vgZ226y0RuYWiMowlNbh9e3x2gZ6iFRf",
           ],
         ),
       ],
