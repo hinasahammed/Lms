@@ -31,7 +31,10 @@ class EnrolledCourse extends StatelessWidget {
           return Text('Error: ${snapshot.error}');
         }
         if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-          return const NoEnrolledCourseUi();
+          return const NoCourseDataUi(
+            title: 'No Enrolled Course Yet!',
+            subTitle: "You haven't enrolled any course",
+          );
         } else {
           return ListView(
             padding: const EdgeInsets.symmetric(

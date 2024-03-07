@@ -1,6 +1,5 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:another_flushbar/flushbar.dart';
 
@@ -49,17 +48,5 @@ class Utils {
       leftBarIndicatorColor: Colors.blue[300],
       borderRadius: BorderRadius.circular(8),
     ).show(context);
-  }
-
-  static void showToast(String message) {
-    Fluttertoast.showToast(
-      msg: message,
-      toastLength: Toast.LENGTH_SHORT,
-      gravity: ToastGravity.BOTTOM,
-      timeInSecForIosWeb: 1,
-      backgroundColor: Colors.black87,
-      textColor: Colors.white,
-      fontSize: 16.0,
-    );
   }
 }

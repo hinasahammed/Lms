@@ -36,16 +36,31 @@ class CourseDetailsViewModel extends GetxController {
       if (existingFavorite.docs.isEmpty) {
         await favoritesRef.add(courseData.toMap()).then((value) {
           setfavoriteStatusResponse(Status.completed);
-
-          Utils.showToast('Added to favorited courses');
+          Utils.showSnackbarToast(
+            context,
+            'Added to favorited courses',
+            Icons.check_circle_rounded,
+          );
         });
       } else {
         setfavoriteStatusResponse(Status.completed);
-        Utils.showToast('This course is already in your favorites');
+        if (context.mounted) {
+          Utils.showSnackbarToast(
+            context,
+            'This course is already in your favorites',
+            Icons.check_circle_rounded,
+          );
+        }
       }
     } catch (e) {
       setfavoriteStatusResponse(Status.error);
-      Utils.showToast('Something went wrong!');
+      if (context.mounted) {
+        Utils.showSnackbarToast(
+          context,
+          'Something went wrong!',
+          Icons.check_circle_rounded,
+        );
+      }
     }
   }
 
@@ -69,17 +84,31 @@ class CourseDetailsViewModel extends GetxController {
           "imageurl": courseData.imageurl,
         }).then((value) {
           setenrolledStatusResponse(Status.completed);
-
-          Utils.showToast('Successfully enrolled the course');
+          Utils.showSnackbarToast(
+            context,
+            'Successfully enrolled the course',
+            Icons.check_circle_rounded,
+          );
         });
       } else {
         setenrolledStatusResponse(Status.completed);
-        Utils.showToast('This course is already enrolled');
+        if (context.mounted) {
+          Utils.showSnackbarToast(
+            context,
+            'This course is already enrolled',
+            Icons.check_circle_rounded,
+          );
+        }
       }
     } catch (e) {
       setenrolledStatusResponse(Status.error);
-
-      Utils.showToast('Something went wrong!');
+      if (context.mounted) {
+        Utils.showSnackbarToast(
+          context,
+          'Something went wrong!',
+          Icons.check_circle_rounded,
+        );
+      }
     }
   }
 }

@@ -25,7 +25,7 @@ class HomeView extends StatelessWidget {
         centerTitle: true,
         actions: [
           IconButton(
-              onPressed: () {
+            onPressed: () {
               Get.to(const FavoriteView());
             },
             icon: const Icon(Icons.favorite_border),
@@ -145,7 +145,10 @@ class HomeView extends StatelessWidget {
                       fontWeight: FontWeight.w600,
                     ),
                   ),
-                  const OngoingCourses(),
+                  SizedBox(
+                    height: Get.height * .25,
+                    child: OngoingCourses(),
+                  ),
                 ],
               ),
             );

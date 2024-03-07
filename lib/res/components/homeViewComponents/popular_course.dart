@@ -15,7 +15,8 @@ class PopularCourse extends StatelessWidget {
     return ListView.separated(
       scrollDirection: Axis.horizontal,
       shrinkWrap: true,
-      itemCount: CourseList.courseList.length,
+      itemCount:
+          CourseList.courseList.length < 4 ? CourseList.courseList.length : 4,
       separatorBuilder: (context, index) => const Gap(10),
       itemBuilder: (context, index) {
         var data = CourseList.courseList[index];

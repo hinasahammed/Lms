@@ -96,7 +96,9 @@ class FavoriteView extends StatelessWidget {
                               IconButton(
                                 onPressed: () {
                                   favoriteViewModel.deleteFavorite(
-                                      courseData['courseTitle']);
+                                    courseData['courseTitle'],
+                                    context,
+                                  );
                                 },
                                 icon: Icon(
                                   Icons.delete,

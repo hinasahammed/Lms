@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:lms/assets/images/image_asset.dart';
 
-class NoEnrolledCourseUi extends StatelessWidget {
-  const NoEnrolledCourseUi({super.key});
+class NoCourseDataUi extends StatelessWidget {
+  final String title;
+  final String subTitle;
+  const NoCourseDataUi(
+      {super.key, required this.title, required this.subTitle});
 
   @override
   Widget build(BuildContext context) {
@@ -11,13 +14,13 @@ class NoEnrolledCourseUi extends StatelessWidget {
       children: [
         Image.asset(ImageAsset.noFavorite),
         Text(
-          'No Enrolled Course Yet!',
+          title,
           style: theme.textTheme.titleLarge!.copyWith(
             color: theme.colorScheme.primary,
           ),
         ),
         Text(
-          "You haven't enrolled any course",
+          subTitle,
           style: theme.textTheme.bodyLarge!.copyWith(
             color: theme.colorScheme.onBackground.withOpacity(.6),
           ),

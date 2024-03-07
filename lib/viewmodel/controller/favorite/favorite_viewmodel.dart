@@ -1,12 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lms/models/course_model.dart';
 import 'package:lms/utils/utils.dart';
 import 'package:lms/view/courseDetails/course_details_view.dart';
 
 class FavoriteViewModel extends GetxController {
-  void deleteFavorite(String courseName) {
+  void deleteFavorite(String courseName, BuildContext context) {
     FirebaseFirestore.instance
         .collection("user")
         .doc(FirebaseAuth.instance.currentUser!.uid)
@@ -16,13 +17,25 @@ class FavoriteViewModel extends GetxController {
         .then((querySnapshot) {
       for (var doc in querySnapshot.docs) {
         doc.reference.delete().then((_) {
-          Utils.showToast("Successfully Removed");
+          Utils.showSnackbarToast(
+            context,
+            'Successfully Removed',
+            Icons.check_circle_rounded,
+          );
         }).catchError((error) {
-          Utils.showToast("Failed");
+          Utils.showSnackbarToast(
+            context,
+            'Failed',
+            Icons.check_circle_rounded,
+          );
         });
       }
     }).catchError((error) {
-      Utils.showToast("Failed");
+      Utils.showSnackbarToast(
+        context,
+        'Failed',
+        Icons.check_circle_rounded,
+      );
     });
   }
 
