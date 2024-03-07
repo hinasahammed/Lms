@@ -32,7 +32,9 @@ class SearchView extends StatelessWidget {
               ],
             ),
             const Gap(10),
-            const Expanded(child: SearchViewCourses())
+            const Expanded(
+              child: SearchViewCourses(),
+            )
           ],
         ),
       ),

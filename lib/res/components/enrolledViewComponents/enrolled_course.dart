@@ -36,17 +36,16 @@ class EnrolledCourse extends StatelessWidget {
             subTitle: "You haven't enrolled any course",
           );
         } else {
-          return ListView(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 16,
-              vertical: 10,
-            ),
-            children: snapshot.data!.docs.map((enrolledCourse) {
+          return ListView.builder(
+            itemCount: snapshot.data!.docs.length,
+            shrinkWrap: true,
+            itemBuilder: (context, index) {
+              var data = snapshot.data!.docs[index];
               return InkWell(
                 onTap: () {
                   Get.to(
                     EnrolledCourseDetails(
-                      courseTitle: enrolledCourse['courseTitle'],
+                      courseTitle: data['courseTitle'],
                     ),
                   );
                 },
@@ -60,7 +59,7 @@ class EnrolledCourse extends StatelessWidget {
                           child: CachedNetworkImage(
                             width: Get.width * .2,
                             height: Get.height * .1,
-                            imageUrl: enrolledCourse['imageurl'],
+                            imageUrl: data['imageurl'],
                             fit: BoxFit.cover,
                             placeholder: (context, url) => Shimmer.fromColors(
                               baseColor: Colors.black.withOpacity(0.2),
@@ -82,7 +81,7 @@ class EnrolledCourse extends StatelessWidget {
                         const Gap(10),
                         Expanded(
                           child: Text(
-                            enrolledCourse['courseTitle'],
+                            data['courseTitle'],
                             style: theme.textTheme.bodyLarge!.copyWith(
                               color: theme.colorScheme.onBackground,
                             ),
@@ -93,7 +92,7 @@ class EnrolledCourse extends StatelessWidget {
                   ),
                 ),
               );
-            }).toList(),
+            },
           );
         }
       },

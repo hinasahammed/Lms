@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:lms/models/course_model.dart';
+import 'package:lms/res/components/enrolledViewComponents/module_description_card.dart';
 import 'package:lms/utils/course_list.dart';
 import 'package:video_player/video_player.dart';
 
@@ -88,11 +89,13 @@ class _EnrolledCourseDetailsState extends State<EnrolledCourseDetails> {
                         child: InkWell(
                           onTap: _togglePlayPause,
                           child: _controller.value.isPlaying
-                              ? Container()
-                              : Icon(
-                                  _controller.value.isPlaying
-                                      ? Icons.pause
-                                      : Icons.play_arrow,
+                              ? Icon(
+                                  Icons.pause,
+                                  size: 50,
+                                  color: Colors.white.withOpacity(.4),
+                                )
+                              : const Icon(
+                                  Icons.play_arrow,
                                   size: 50,
                                   color: Colors.white,
                                 ),
@@ -157,57 +160,40 @@ class _EnrolledCourseDetailsState extends State<EnrolledCourseDetails> {
                                     (descIndex) {
                                       var data =
                                           courseData.moduleDesc[descIndex];
-                                      return Card(
-                                        child: ListTile(
-                                          title: Text(
-                                            data,
-                                            style: theme.textTheme.labelLarge!
-                                                .copyWith(
-                                              color: theme
-                                                  .colorScheme.onBackground,
-                                            ),
-                                          ),
-                                          trailing: IconButton(
-                                            onPressed: () {
-                                              _controller.pause();
+                                      return ModuleDescriptionCard(
+                                        descriptiontitle: data,
+                                        onPressed: () {
+                                          _controller.pause();
+                                          setState(() {
+                                            videoUrl =
+                                                courseData.videoUrl[descIndex];
+                                          });
+                                          _controller = VideoPlayerController
+                                              .networkUrl(Uri.parse(
+                                            videoUrl.isEmpty
+                                                ? course!
+                                                    .modulemodel[0].videoUrl[0]
+                                                : videoUrl,
+                                          ))
+                                            ..initialize().then((_) {
                                               setState(() {
-                                                videoUrl = courseData
-                                                    .videoUrl[descIndex];
-                                              });
-                                              _controller =
-                                                  VideoPlayerController
-                                                      .networkUrl(Uri.parse(
-                                                videoUrl.isEmpty
-                                                    ? course!.modulemodel[0]
-                                                        .videoUrl[0]
-                                                    : videoUrl,
-                                              ))
-                                                    ..initialize().then((_) {
-                                                      setState(() {
+                                                _controller.addListener(() {
+                                                  setState(() {
+                                                    progressValue = _controller
+                                                            .value
+                                                            .position
+                                                            .inMilliseconds
+                                                            .toDouble() /
                                                         _controller
-                                                            .addListener(() {
-                                                          setState(() {
-                                                            progressValue = _controller
-                                                                    .value
-                                                                    .position
-                                                                    .inMilliseconds
-                                                                    .toDouble() /
-                                                                _controller
-                                                                    .value
-                                                                    .duration
-                                                                    .inMilliseconds
-                                                                    .toDouble();
-                                                          });
-                                                        });
-                                                      });
-                                                    });
-                                            },
-                                            icon: Icon(
-                                              Icons.play_circle_outlined,
-                                              color: theme.colorScheme.primary,
-                                            ),
-                                          ),
-                                        ),
+                                                            .value
+                                                            .duration
+                                                            .inMilliseconds
+                                                            .toDouble();
+                                                  });
+                                                });
+                                              });
+                                            });
+                                        },
                                       );
                                     },
                                   ),

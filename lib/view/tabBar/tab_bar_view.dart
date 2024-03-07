@@ -27,7 +27,10 @@ class _CustomTabBarViewState extends State<CustomTabBarView> {
     return Scaffold(
       body: _pages[currentIndex],
       bottomNavigationBar: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        padding: const EdgeInsets.symmetric(
+          horizontal: 16,
+          vertical: 12,
+        ),
         child: GNav(
           onTabChange: (value) {
             setState(

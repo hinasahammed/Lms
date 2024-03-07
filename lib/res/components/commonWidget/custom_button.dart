@@ -29,7 +29,7 @@ class CustomButton extends StatelessWidget {
       onPressed: onPressed,
       child: status == Status.loading
           ? CircularProgressIndicator(
-              color: theme.colorScheme.onBackground,
+              color: theme.colorScheme.onPrimary,
             )
           : Text(
               btntitle,

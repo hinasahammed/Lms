@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:lms/assets/images/image_asset.dart';
-import 'package:lms/main.dart';
 import 'package:lms/res/components/commonWidget/custom_button.dart';
 import 'package:lms/res/components/commonWidget/custom_text_form_field.dart';
 import 'package:lms/viewmodel/controller/reset/reset_viewmodel.dart';
@@ -15,6 +14,8 @@ class ResetPassWordView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final resetViewModel = Get.put(ResetViewModel());
+    final theme = Theme.of(context);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Reset'),

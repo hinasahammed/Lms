@@ -50,6 +50,7 @@ dependencies:
   fluttertoast: ^8.2.4
   video_player: ^2.8.2
   another_flushbar: ^1.12.30
+  get_storage: ^2.1.1
 
 dev_dependencies:
   flutter_test:

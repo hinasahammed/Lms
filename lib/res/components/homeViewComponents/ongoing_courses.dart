@@ -35,58 +35,55 @@ class OngoingCourses extends StatelessWidget {
             subTitle: "You haven't enrolled any course",
           );
         } else {
-          return Expanded(
-            child: ListView.builder(
-              itemCount: snapshot.data!.docs.length < 3
-                  ? snapshot.data!.docs.length
-                  : 3,
-              shrinkWrap: true,
-              itemBuilder: (context, index) {
-                var data = snapshot.data!.docs[index];
-                return Card(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 6),
-                    child: Row(
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(15),
-                          child: CachedNetworkImage(
-                            width: Get.width * .2,
-                            height: Get.height * .1,
-                            imageUrl: data['imageurl'],
-                            fit: BoxFit.cover,
-                            placeholder: (context, url) => Shimmer.fromColors(
-                              baseColor: Colors.black.withOpacity(0.2),
-                              highlightColor: Colors.white54,
-                              enabled: true,
-                              child: Container(
-                                width: Get.width * .2,
-                                height: Get.height * .1,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15),
-                                  color: Colors.black54,
-                                ),
+          return ListView.builder(
+            itemCount:
+                snapshot.data!.docs.length < 3 ? snapshot.data!.docs.length : 3,
+            shrinkWrap: true,
+            itemBuilder: (context, index) {
+              var data = snapshot.data!.docs[index];
+              return Card(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 6),
+                  child: Row(
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(15),
+                        child: CachedNetworkImage(
+                          width: Get.width * .2,
+                          height: Get.height * .1,
+                          imageUrl: data['imageurl'],
+                          fit: BoxFit.cover,
+                          placeholder: (context, url) => Shimmer.fromColors(
+                            baseColor: Colors.black.withOpacity(0.2),
+                            highlightColor: Colors.white54,
+                            enabled: true,
+                            child: Container(
+                              width: Get.width * .2,
+                              height: Get.height * .1,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                color: Colors.black54,
                               ),
                             ),
-                            errorWidget: (context, url, error) =>
-                                const Icon(Icons.error),
+                          ),
+                          errorWidget: (context, url, error) =>
+                              const Icon(Icons.error),
+                        ),
+                      ),
+                      const Gap(10),
+                      Expanded(
+                        child: Text(
+                          data['courseTitle'],
+                          style: theme.textTheme.bodyLarge!.copyWith(
+                            color: theme.colorScheme.onBackground,
                           ),
                         ),
-                        const Gap(10),
-                        Expanded(
-                          child: Text(
-                            data['courseTitle'],
-                            style: theme.textTheme.bodyLarge!.copyWith(
-                              color: theme.colorScheme.onBackground,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                );
-              },
-            ),
+                ),
+              );
+            },
           );
         }
       },

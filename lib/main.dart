@@ -1,23 +1,23 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:lms/view/getStarted/get_started.dart';
 import 'package:lms/view/login/login_view.dart';
 import 'package:lms/view/splash/splash_view.dart';
 import 'package:lms/view/tabBar/tab_bar_view.dart';
+import 'package:lms/viewmodel/services/account/account_services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'firebase_options.dart';
 
-final theme = ThemeData(
-  colorScheme: ColorScheme.fromSeed(
-    seedColor: const Color(0xff2096C7),
-    brightness: Brightness.dark,
-  ),
-  useMaterial3: true,
-  textTheme: GoogleFonts.poppinsTextTheme(),
-);
+// final theme = ThemeData(
+//   colorScheme: ColorScheme.fromSeed(
+//     seedColor: const Color(0xff2096C7),
+//     brightness: Brightness.dark,
+//   ),
+//   useMaterial3: true,
+//   textTheme: GoogleFonts.poppinsTextTheme(),
+// );
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -35,7 +35,9 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Lms',
       debugShowCheckedModeBanner: false,
-      theme: theme,
+      theme: MyThemes.appThemeData,
+      darkTheme: MyThemes.darkThemeData,
+      themeMode: AccountServices().getThemeMode(),
       home: StreamBuilder(
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {

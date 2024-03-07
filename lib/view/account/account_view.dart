@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 import 'package:lms/assets/icons/icons_asset.dart';
 import 'package:lms/res/components/accountViewComponents/account_tile.dart';
@@ -13,6 +15,7 @@ import 'package:lms/viewmodel/services/account/account_services.dart';
 class AccountView extends StatelessWidget {
   AccountView({super.key});
   final auth = FirebaseAuth.instance;
+  final _getStorage = GetStorage();
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -69,20 +72,18 @@ class AccountView extends StatelessWidget {
                       color: theme.colorScheme.onBackground.withOpacity(.5),
                     ),
                   ),
-                  const Spacer(),
-                  const AccountTile(
-                    title: 'Languages',
-                    trailing: Icon(Icons.arrow_circle_right),
-                    imageUrl: IconsAsset.language,
-                  ),
+                  const Gap(20),
                   AccountTile(
                     title: 'Light mode',
                     trailing: Switch(
-                      value: false,
-                      onChanged: (value) {},
+                      value: _getStorage.read('isLightMode') ?? false,
+                      onChanged: (value) {
+                        AccountServices().changeThemeMode();
+                      },
                     ),
                     imageUrl: IconsAsset.lightMode,
                   ),
+                  const Gap(10),
                   AccountTile(
                     trailing: const Icon(Icons.arrow_circle_right),
                     imageUrl: IconsAsset.edit,
@@ -91,6 +92,7 @@ class AccountView extends StatelessWidget {
                     },
                     title: 'Edit profile',
                   ),
+                  const Gap(10),
                   AccountTile(
                     trailing: const Icon(Icons.arrow_circle_right),
                     imageUrl: IconsAsset.favorite,
@@ -99,6 +101,7 @@ class AccountView extends StatelessWidget {
                     },
                     title: 'Favorites',
                   ),
+                  const Gap(10),
                   StreamBuilder(
                     stream: FirebaseFirestore.instance
                         .collection("user")
@@ -128,6 +131,7 @@ class AccountView extends StatelessWidget {
                       );
                     },
                   ),
+                  const Gap(10),
                   AccountTile(
                     onTap: () {
                       AccountServices().logout(context);

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:lms/assets/images/image_asset.dart';
-import 'package:lms/main.dart';
 import 'package:lms/res/components/commonWidget/custom_button.dart';
 import 'package:lms/res/components/commonWidget/custom_text_form_field.dart';
 import 'package:lms/viewmodel/controller/editProfile/edit_profile_viewmodel.dart';
@@ -13,6 +12,7 @@ class EditProfileView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final editProfileViewModel = Get.put(EditProfileViewModel());
+    final theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Edit profile'),
