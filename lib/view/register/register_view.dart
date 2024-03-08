@@ -25,10 +25,13 @@ class RegisterView extends StatelessWidget {
             key: _formKey,
             child: Column(
               children: [
-                Image.asset(ImageAsset.loginImage),
+                Image.asset(
+                  height: 320,
+                  ImageAsset.loginImage,
+                  cacheHeight: 320,
+                ),
                 CustomTextFormField(
-              textInputAction: TextInputAction.next,
-
+                  textInputAction: TextInputAction.next,
                   controller: registerViewmodel.userNameController.value,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -43,8 +46,7 @@ class RegisterView extends StatelessWidget {
                 ),
                 const Gap(10),
                 CustomTextFormField(
-              textInputAction: TextInputAction.next,
-
+                  textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.emailAddress,
                   controller: registerViewmodel.emailController.value,
                   validator: (value) {
@@ -62,8 +64,7 @@ class RegisterView extends StatelessWidget {
                 ),
                 const Gap(10),
                 CustomTextFormField(
-              textInputAction: TextInputAction.next,
-
+                  textInputAction: TextInputAction.next,
                   obscureText: true,
                   controller: registerViewmodel.passwordController.value,
                   validator: (value) {
@@ -88,8 +89,7 @@ class RegisterView extends StatelessWidget {
                 ),
                 const Gap(10),
                 CustomTextFormField(
-              textInputAction: TextInputAction.done,
-
+                  textInputAction: TextInputAction.done,
                   obscureText: true,
                   controller: registerViewmodel.confirmPasswordController.value,
                   validator: (value) {

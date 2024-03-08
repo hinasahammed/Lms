@@ -9,7 +9,12 @@ class NoFavoriteItemUi extends StatelessWidget {
     final theme = Theme.of(context);
     return Column(
       children: [
-        Image.asset(ImageAsset.noFavorite),
+        Image.asset(
+          width: double.infinity,
+          height: 320,
+          ImageAsset.noFavorite,
+          cacheHeight: 320,
+        ),
         Text(
           'No Favorites Yet!',
           style: theme.textTheme.titleLarge!.copyWith(

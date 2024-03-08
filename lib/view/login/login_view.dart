@@ -27,10 +27,14 @@ class LoginView extends StatelessWidget {
             key: _formKey,
             child: Column(
               children: [
-                Image.asset(ImageAsset.loginImage),
+                Image.asset(
+                  height: 320,
+                  ImageAsset.loginImage,
+                  fit: BoxFit.cover,
+                  cacheHeight: 320,
+                ),
                 CustomTextFormField(
-              textInputAction: TextInputAction.next,
-
+                  textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.emailAddress,
                   controller: loginViewModel.emailController.value,
                   validator: (value) {
@@ -48,8 +52,7 @@ class LoginView extends StatelessWidget {
                 ),
                 const Gap(10),
                 CustomTextFormField(
-              textInputAction: TextInputAction.done,
-
+                  textInputAction: TextInputAction.done,
                   obscureText: true,
                   controller: loginViewModel.passwordController.value,
                   validator: (value) {

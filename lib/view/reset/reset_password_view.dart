@@ -28,7 +28,11 @@ class ResetPassWordView extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset(ImageAsset.forgotPassword),
+                Image.asset(
+                  height: 320,
+                  ImageAsset.forgotPassword,
+                  cacheHeight: 320,
+                ),
                 Text(
                   'Enter your email and we will send you a password reset link',
                   style: theme.textTheme.titleLarge!.copyWith(

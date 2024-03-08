@@ -46,7 +46,7 @@ dependencies:
   cloud_firestore: ^4.15.6
   shared_preferences: ^2.2.2
   awesome_dialog: ^3.2.0
-  video_player: ^2.8.2
+  video_player: ^2.8.2  
   another_flushbar: ^1.12.30
   get_storage: ^2.1.1
 

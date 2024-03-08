@@ -22,7 +22,11 @@ class EditProfileView extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
           child: Column(
             children: [
-              Image.asset(ImageAsset.editProfile),
+              Image.asset(
+                height: 320,
+                cacheHeight: 320,
+                ImageAsset.editProfile,
+              ),
               const Gap(15),
               Text(
                 "Change your name!",

@@ -10,7 +10,8 @@ class AccountTile extends StatelessWidget {
     super.key,
     this.trailing,
     required this.title,
-    required this.imageUrl, this.onTap,
+    required this.imageUrl,
+    this.onTap,
   });
 
   @override
@@ -27,10 +28,16 @@ class AccountTile extends StatelessWidget {
           decoration: BoxDecoration(
             color: theme.colorScheme.onBackground.withOpacity(.3),
             shape: BoxShape.circle,
-            image: DecorationImage(
-              image: AssetImage(imageUrl),
-              fit: BoxFit.contain,
-            ),
+            // image: DecorationImage(
+            //   image: AssetImage(imageUrl),
+            //   fit: BoxFit.contain,
+            // ),
+          ),
+          child: Image.asset(
+            height: 100,
+            imageUrl,
+            fit: BoxFit.contain,
+            cacheHeight: 100,
           ),
         ),
         title: Text(

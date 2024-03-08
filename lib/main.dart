@@ -10,14 +10,7 @@ import 'package:lms/viewmodel/services/account/account_services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'firebase_options.dart';
 
-// final theme = ThemeData(
-//   colorScheme: ColorScheme.fromSeed(
-//     seedColor: const Color(0xff2096C7),
-//     brightness: Brightness.dark,
-//   ),
-//   useMaterial3: true,
-//   textTheme: GoogleFonts.poppinsTextTheme(),
-// );
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

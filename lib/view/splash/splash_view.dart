@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:lms/assets/images/image_asset.dart';
@@ -19,7 +18,12 @@ class _SplashViewState extends State<SplashView> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(ImageAsset.appLogo),
+            Image.asset(
+              height: 310,
+              width: double.infinity,
+              cacheHeight: 310,
+              ImageAsset.appLogo,
+            ),
             Text(
               'Lms',
               style: theme.textTheme.headlineLarge!.copyWith(
