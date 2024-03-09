@@ -1,13 +1,8 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:lms/view/getStarted/get_started.dart';
-import 'package:lms/view/login/login_view.dart';
-import 'package:lms/view/splash/splash_view.dart';
-import 'package:lms/view/tabBar/tab_bar_view.dart';
+import 'package:lms/res/routes/routes.dart';
 import 'package:lms/viewmodel/services/account/account_services.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'firebase_options.dart';
 
 
@@ -31,34 +26,8 @@ class MyApp extends StatelessWidget {
       theme: MyThemes.appThemeData,
       darkTheme: MyThemes.darkThemeData,
       themeMode: AccountServices().getThemeMode(),
-      home: StreamBuilder(
-        stream: FirebaseAuth.instance.authStateChanges(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const SplashView();
-          } else {
-            if (snapshot.data != null) {
-              return const CustomTabBarView();
-            } else {
-              return FutureBuilder<bool>(
-                future: checkIfUserLoggedIn(),
-                builder: (context, snapshot) {
-                  if (snapshot.data ?? false) {
-                    return LoginView();
-                  } else {
-                    return const Getstarted();
-                  }
-                },
-              );
-            }
-          }
-        },
-      ),
+      getPages: Routes.appRoute(),
     );
   }
 
-  Future<bool> checkIfUserLoggedIn() async {
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.getBool('Get_started') ?? false;
-  }
 }

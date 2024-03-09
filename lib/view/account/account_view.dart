@@ -8,8 +8,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:lms/assets/icons/icons_asset.dart';
 import 'package:lms/res/components/accountViewComponents/account_tile.dart';
 import 'package:lms/res/components/commonWidget/shimmer_list_ui.dart';
-import 'package:lms/view/editProfile/edit_profile_view.dart';
-import 'package:lms/view/favorite/favorite_view.dart';
+import 'package:lms/res/routes/routes_name.dart';
 import 'package:lms/viewmodel/services/account/account_services.dart';
 
 class AccountView extends StatelessWidget {
@@ -88,7 +87,7 @@ class AccountView extends StatelessWidget {
                     trailing: const Icon(Icons.arrow_circle_right),
                     imageUrl: IconsAsset.edit,
                     onTap: () {
-                      Get.to(const EditProfileView());
+                      Get.toNamed(RoutesName.editProfile);
                     },
                     title: 'Edit profile',
                   ),
@@ -97,7 +96,7 @@ class AccountView extends StatelessWidget {
                     trailing: const Icon(Icons.arrow_circle_right),
                     imageUrl: IconsAsset.favorite,
                     onTap: () {
-                      Get.to(const FavoriteView());
+                      Get.toNamed(RoutesName.favorites);
                     },
                     title: 'Favorites',
                   ),

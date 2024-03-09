@@ -6,8 +6,7 @@ import 'package:get/get.dart';
 import 'package:lms/res/components/homeViewComponents/ongoing_courses.dart';
 import 'package:lms/res/components/homeViewComponents/popular_course.dart';
 import 'package:lms/res/components/commonWidget/shimmer_list_ui.dart';
-import 'package:lms/view/allCourses/all_courses_view.dart';
-import 'package:lms/view/favorite/favorite_view.dart';
+import 'package:lms/res/routes/routes_name.dart';
 
 class HomeView extends StatelessWidget {
   HomeView({super.key});
@@ -27,7 +26,7 @@ class HomeView extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              Get.to(const FavoriteView());
+              Get.toNamed(RoutesName.favorites);
             },
             icon: const Icon(Icons.favorite_border),
           )
@@ -123,7 +122,7 @@ class HomeView extends StatelessWidget {
                       ),
                       TextButton(
                         onPressed: () {
-                          Get.to(const AllCoursesView());
+                          Get.toNamed(RoutesName.allCourses);
                         },
                         child: Text(
                           'See all',

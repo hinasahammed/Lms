@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:lms/assets/images/image_asset.dart';
 import 'package:lms/res/components/commonWidget/custom_button.dart';
 import 'package:lms/res/components/commonWidget/custom_text_form_field.dart';
-import 'package:lms/view/login/login_view.dart';
+import 'package:lms/res/routes/routes_name.dart';
 import 'package:lms/viewmodel/controller/register/register_viewmodel.dart';
 
 class RegisterView extends StatelessWidget {
@@ -130,9 +130,8 @@ class RegisterView extends StatelessWidget {
                     ),
                     TextButton(
                       onPressed: () {
-                        Get.to(
-                          LoginView(),
-                          transition: Transition.leftToRight,
+                        Get.toNamed(
+                          RoutesName.login
                         );
                       },
                       child: const Text('Login'),

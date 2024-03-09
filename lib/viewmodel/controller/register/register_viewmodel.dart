@@ -4,8 +4,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lms/data/response/status.dart';
+import 'package:lms/res/routes/routes_name.dart';
 import 'package:lms/utils/utils.dart';
-import 'package:lms/view/login/login_view.dart';
 
 class RegisterViewmodel extends GetxController {
   Rx<Status> reqStatusResponse = Status.completed.obs;
@@ -34,7 +34,7 @@ class RegisterViewmodel extends GetxController {
         (value) {
           addUserData();
 
-          Get.to(LoginView());
+          Get.toNamed(RoutesName.login);
           Utils.showSnackbarToast(
             context,
             "Account created successfully, now try to login.",

@@ -4,8 +4,7 @@ import 'package:get/get.dart';
 import 'package:lms/assets/images/image_asset.dart';
 import 'package:lms/res/components/commonWidget/custom_button.dart';
 import 'package:lms/res/components/commonWidget/custom_text_form_field.dart';
-import 'package:lms/view/register/register_view.dart';
-import 'package:lms/view/reset/reset_password_view.dart';
+import 'package:lms/res/routes/routes_name.dart';
 import 'package:lms/viewmodel/controller/login/login_viewmodel.dart';
 
 class LoginView extends StatelessWidget {
@@ -78,9 +77,8 @@ class LoginView extends StatelessWidget {
                 ),
                 TextButton(
                   onPressed: () {
-                    Get.to(
-                      ResetPassWordView(),
-                      transition: Transition.zoom,
+                    Get.toNamed(
+                      RoutesName.resetPassword,
                     );
                   },
                   child: const Text('Forget your password?'),
@@ -113,9 +111,8 @@ class LoginView extends StatelessWidget {
                     TextButton(
                       onPressed: () {
                         
-                        Get.to(
-                          RegisterView(),
-                          transition: Transition.rightToLeft,
+                        Get.toNamed(
+                          RoutesName.register
                         );
                       },
                       child: const Text('Register'),
