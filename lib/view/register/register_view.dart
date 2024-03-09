@@ -97,6 +97,10 @@ class RegisterView extends StatelessWidget {
                     if (value == null || value.isEmpty) {
                       return "Enter an Password";
                     }
+                    if (registerViewmodel.passwordController.value.text !=
+                        value) {
+                      return "Password don't match";
+                    }
 
                     return null;
                   },
@@ -130,9 +134,7 @@ class RegisterView extends StatelessWidget {
                     ),
                     TextButton(
                       onPressed: () {
-                        Get.toNamed(
-                          RoutesName.login
-                        );
+                        Get.toNamed(RoutesName.login);
                       },
                       child: const Text('Login'),
                     ),
