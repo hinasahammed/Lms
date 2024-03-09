@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class AccountTile extends StatelessWidget {
   final Widget? trailing;
@@ -17,14 +16,15 @@ class AccountTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final size = MediaQuery.sizeOf(context);
     return Card(
       child: ListTile(
         onTap: onTap,
         contentPadding: const EdgeInsets.all(8),
         leading: Container(
           padding: const EdgeInsets.all(10),
-          width: Get.width * .15,
-          height: Get.height * 0.5,
+          width: size.width * .15,
+          height: size.height * 0.5,
           decoration: BoxDecoration(
             color: theme.colorScheme.onBackground.withOpacity(.3),
             shape: BoxShape.circle,

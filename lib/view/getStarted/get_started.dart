@@ -12,6 +12,7 @@ class Getstarted extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final size = MediaQuery.sizeOf(context);
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -26,7 +27,7 @@ class Getstarted extends StatelessWidget {
               child: Card(
                 child: Container(
                   padding: const EdgeInsets.all(10),
-                  width: Get.width,
+                  width: size.width,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -47,7 +48,7 @@ class Getstarted extends StatelessWidget {
                       ),
                       const Gap(15),
                       SizedBox(
-                        width: Get.width * .6,
+                        width: size.width * .6,
                         height: 50,
                         child: CustomButton(
                           btntitle: 'Get Started',

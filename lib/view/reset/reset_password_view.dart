@@ -15,6 +15,7 @@ class ResetPassWordView extends StatelessWidget {
   Widget build(BuildContext context) {
     final resetViewModel = Get.put(ResetViewModel());
     final theme = Theme.of(context);
+    final size = MediaQuery.sizeOf(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -60,7 +61,7 @@ class ResetPassWordView extends StatelessWidget {
                 ),
                 const Gap(20),
                 SizedBox(
-                  width: Get.width,
+                  width: size.width,
                   height: 50,
                   child: CustomButton(
                     status: resetViewModel.reqStatusResponse.value,

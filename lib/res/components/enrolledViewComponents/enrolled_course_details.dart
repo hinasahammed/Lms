@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:get/get.dart';
 import 'package:lms/models/course_model.dart';
 import 'package:lms/res/components/enrolledViewComponents/module_description_card.dart';
 import 'package:lms/utils/course_list.dart';
@@ -65,7 +64,7 @@ class _EnrolledCourseDetailsState extends State<EnrolledCourseDetails> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-
+final size = MediaQuery.sizeOf(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Video'),
@@ -120,7 +119,7 @@ class _EnrolledCourseDetailsState extends State<EnrolledCourseDetails> {
                   )
                 : Container(
                     alignment: Alignment.center,
-                    width: Get.width,
+                    width: size.width,
                     height: 200,
                     child: const CircularProgressIndicator(),
                   ),

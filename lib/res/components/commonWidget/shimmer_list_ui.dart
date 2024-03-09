@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
 
 class ShimmerList extends StatelessWidget {
@@ -8,6 +7,7 @@ class ShimmerList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.sizeOf(context);
     return Shimmer.fromColors(
       baseColor: Colors.black.withOpacity(0.2),
       highlightColor: Colors.white54,
@@ -17,8 +17,8 @@ class ShimmerList extends StatelessWidget {
         child: Row(
           children: [
             Container(
-              width: Get.width * .25,
-              height: Get.height * .13,
+              width: size.width * .25,
+              height: size.height * .13,
               decoration: BoxDecoration(
                 color: Colors.grey,
                 borderRadius: BorderRadius.circular(20),

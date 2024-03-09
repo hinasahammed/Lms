@@ -12,6 +12,7 @@ class SearchViewCourses extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final size = MediaQuery.sizeOf(context);
     final searchViewModel = Get.put(SearchViewModel());
 
     return Obx(() {
@@ -35,7 +36,7 @@ class SearchViewCourses extends StatelessWidget {
                       borderRadius: BorderRadius.circular(15),
                       child: CachedNetworkImage(
                         width: double.infinity,
-                        height: Get.height * .18,
+                        height: size.height * .18,
                         imageUrl: data.imageurl,
                         fit: BoxFit.cover,
                         placeholder: (context, url) => Shimmer.fromColors(
@@ -43,7 +44,7 @@ class SearchViewCourses extends StatelessWidget {
                           highlightColor: Colors.white54,
                           enabled: true,
                           child: Container(
-                            height: Get.height * .18,
+                            height: size.height * .18,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(15),
                               color: Colors.black54,

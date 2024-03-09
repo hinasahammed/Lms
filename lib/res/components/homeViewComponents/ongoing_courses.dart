@@ -3,7 +3,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:get/get.dart';
 import 'package:lms/res/components/commonWidget/shimmer_list_ui.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -12,6 +11,7 @@ class OngoingCourses extends StatelessWidget {
   final auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.sizeOf(context);
     final theme = Theme.of(context);
     return StreamBuilder(
       stream: FirebaseFirestore.instance
@@ -54,8 +54,8 @@ class OngoingCourses extends StatelessWidget {
                       ClipRRect(
                         borderRadius: BorderRadius.circular(15),
                         child: CachedNetworkImage(
-                          width: Get.width * .2,
-                          height: Get.height * .1,
+                          width: size.width * .2,
+                          height: size.height * .1,
                           imageUrl: data['imageurl'],
                           fit: BoxFit.cover,
                           placeholder: (context, url) => Shimmer.fromColors(
@@ -63,8 +63,8 @@ class OngoingCourses extends StatelessWidget {
                             highlightColor: Colors.white54,
                             enabled: true,
                             child: Container(
-                              width: Get.width * .2,
-                              height: Get.height * .1,
+                              width: size.width * .2,
+                              height: size.height * .1,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(15),
                                 color: Colors.black54,

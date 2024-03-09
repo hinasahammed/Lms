@@ -14,6 +14,7 @@ class CourseDetailsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final size = MediaQuery.sizeOf(context);
     final courseDetailsViewModel = Get.put(CourseDetailsViewModel());
     return Scaffold(
       appBar: AppBar(
@@ -29,8 +30,8 @@ class CourseDetailsView extends StatelessWidget {
                   bottomRight: Radius.circular(20),
                 ),
                 child: CachedNetworkImage(
-                  width: Get.width,
-                  height: Get.height * .25,
+                  width: size.width,
+                  height: size.height * .25,
                   imageUrl: courseData.imageurl,
                   fit: BoxFit.cover,
                   placeholder: (context, url) => Shimmer.fromColors(
@@ -38,7 +39,7 @@ class CourseDetailsView extends StatelessWidget {
                     highlightColor: Colors.white54,
                     enabled: true,
                     child: Container(
-                      height: Get.height * .18,
+                      height: size.height * .18,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
                         color: Colors.black54,
@@ -150,7 +151,7 @@ class CourseDetailsView extends StatelessWidget {
                     ),
                     const Gap(10),
                     SizedBox(
-                      width: Get.width,
+                      width: size.width,
                       height: 50,
                       child: CustomButton(
                         status:

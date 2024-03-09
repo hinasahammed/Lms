@@ -11,6 +11,7 @@ class EditProfileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.sizeOf(context);
     final editProfileViewModel = Get.put(EditProfileViewModel());
     final theme = Theme.of(context);
     return Scaffold(
@@ -51,9 +52,9 @@ class EditProfileView extends StatelessWidget {
               ),
               const Gap(20),
               SizedBox(
-                width: Get.width,
+                width: size.width,
                 child: SizedBox(
-                  width: Get.width,
+                  width: size.width,
                   height: 50,
                   child: CustomButton(
                     status: editProfileViewModel.reqStatusResponse.value,

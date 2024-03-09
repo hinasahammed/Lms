@@ -15,6 +15,7 @@ class LoginView extends StatelessWidget {
   Widget build(BuildContext context) {
     final loginViewModel = Get.put(LoginViewModel());
     final theme = Theme.of(context);
+    final size = MediaQuery.sizeOf(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -85,7 +86,7 @@ class LoginView extends StatelessWidget {
                   child: const Text('Forget your password?'),
                 ),
                 SizedBox(
-                  width: Get.width,
+                  width: size.width,
                   height: 50,
                   child: CustomButton(
                     status: loginViewModel.reqStatusResponse.value,
@@ -111,6 +112,7 @@ class LoginView extends StatelessWidget {
                     ),
                     TextButton(
                       onPressed: () {
+                        
                         Get.to(
                           RegisterView(),
                           transition: Transition.rightToLeft,

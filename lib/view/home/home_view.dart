@@ -16,6 +16,7 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final size = MediaQuery.sizeOf(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Lms'),
@@ -146,7 +147,7 @@ class HomeView extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: Get.height * .25,
+                    height: size.height * .25,
                     child: OngoingCourses(),
                   ),
                 ],

@@ -16,6 +16,7 @@ class FavoriteView extends StatelessWidget {
   Widget build(BuildContext context) {
     final favoriteViewModel = Get.put(FavoriteViewModel());
     final theme = Theme.of(context);
+    final size = MediaQuery.sizeOf(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Favorites'),
@@ -58,8 +59,8 @@ class FavoriteView extends StatelessWidget {
                           ClipRRect(
                             borderRadius: BorderRadius.circular(15),
                             child: CachedNetworkImage(
-                              width: Get.width * .2,
-                              height: Get.height * .1,
+                              width: size.width * .2,
+                              height: size.height * .1,
                               imageUrl: courseData['imageurl'],
                               fit: BoxFit.cover,
                               placeholder: (context, url) => Shimmer.fromColors(
@@ -67,8 +68,8 @@ class FavoriteView extends StatelessWidget {
                                 highlightColor: Colors.white54,
                                 enabled: true,
                                 child: Container(
-                                  width: Get.width * .2,
-                                  height: Get.height * .1,
+                                  width: size.width * .2,
+                                  height: size.height * .1,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(15),
                                     color: Colors.black54,
@@ -85,7 +86,7 @@ class FavoriteView extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               SizedBox(
-                                width: Get.width * .49,
+                                width: size.width * .49,
                                 child: Text(
                                   courseData['courseTitle'],
                                   style: theme.textTheme.bodyLarge!.copyWith(

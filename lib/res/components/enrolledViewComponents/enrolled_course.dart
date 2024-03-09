@@ -15,6 +15,7 @@ class EnrolledCourse extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final size = MediaQuery.sizeOf(context);
     return StreamBuilder(
       stream: FirebaseFirestore.instance
           .collection("user")
@@ -57,8 +58,8 @@ class EnrolledCourse extends StatelessWidget {
                         ClipRRect(
                           borderRadius: BorderRadius.circular(15),
                           child: CachedNetworkImage(
-                            width: Get.width * .2,
-                            height: Get.height * .1,
+                            width: size.width * .2,
+                            height: size.height * .1,
                             imageUrl: data['imageurl'],
                             fit: BoxFit.cover,
                             placeholder: (context, url) => Shimmer.fromColors(
@@ -66,8 +67,8 @@ class EnrolledCourse extends StatelessWidget {
                               highlightColor: Colors.white54,
                               enabled: true,
                               child: Container(
-                                width: Get.width * .2,
-                                height: Get.height * .1,
+                                width: size.width * .2,
+                                height: size.height * .1,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(15),
                                   color: Colors.black54,

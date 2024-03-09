@@ -13,6 +13,7 @@ class RegisterView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final size = MediaQuery.sizeOf(context);
     final registerViewmodel = Get.put(RegisterViewmodel());
     return Scaffold(
       appBar: AppBar(
@@ -103,7 +104,7 @@ class RegisterView extends StatelessWidget {
                 ),
                 const Gap(20),
                 SizedBox(
-                  width: Get.width,
+                  width: size.width,
                   height: 50,
                   child: CustomButton(
                     status: registerViewmodel.reqStatusResponse.value,
