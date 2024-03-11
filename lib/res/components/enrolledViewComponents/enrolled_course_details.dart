@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:lms/models/course_model.dart';
+import 'package:lms/models/courseModel/course_model.dart';
 import 'package:lms/res/components/enrolledViewComponents/module_description_card.dart';
 import 'package:lms/utils/course_list.dart';
 import 'package:video_player/video_player.dart';

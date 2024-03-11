@@ -1,4 +1,4 @@
-import 'package:lms/models/course_model.dart';
+import 'package:lms/models/courseModel/course_model.dart';
 
 class CourseList {
   static List<CourseModel> courseList = [

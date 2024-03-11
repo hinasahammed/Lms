@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lms/data/response/status.dart';
+import 'package:lms/models/lmsCourseModel/lms_course_model.dart';
 import 'package:lms/repository/course/course_repository.dart';
 import 'package:lms/utils/utils.dart';
 
@@ -8,6 +9,7 @@ class CourseDetailsViewModel extends GetxController {
   // Rx<Status> favoriteStatusResponse = Status.completed.obs;
   // Rx<Status> enrolledStatusResponse = Status.completed.obs;
   Rx<Status> reqResponse = Status.completed.obs;
+  RxList<LmsCourseModel> courseList = <LmsCourseModel>[].obs;
   // final firestore = FirebaseFirestore.instance;
   // final auth = FirebaseAuth.instance;
   // void setfavoriteStatusResponse(Status status) {
@@ -30,6 +32,13 @@ class CourseDetailsViewModel extends GetxController {
     await repo.getCourse().then((value) {
       setReqResponse(Status.completed);
       print(value);
+      for (var element in value) {
+        courseList.add(
+          LmsCourseModel.fromJson(
+            element,
+          ),
+        );
+      }
     }).onError((error, stackTrace) {
       setReqResponse(Status.loading);
       Utils.showSnackbarToast(

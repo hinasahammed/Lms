@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:lms/models/course_model.dart';
+import 'package:lms/models/courseModel/course_model.dart';
 import 'package:lms/res/components/commonWidget/custom_button.dart';
 import 'package:lms/viewmodel/controller/courseDetails/course_details_viewmodel.dart';
 import 'package:shimmer/shimmer.dart';

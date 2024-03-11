@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lms/models/course_model.dart';
+import 'package:lms/models/courseModel/course_model.dart';
 import 'package:lms/utils/utils.dart';
 import 'package:lms/view/courseDetails/course_details_view.dart';
 
