@@ -38,14 +38,14 @@ class LoginView extends StatelessWidget {
                   keyboardType: TextInputType.emailAddress,
                   controller: loginViewModel.emailController.value,
                   validator: (value) {
-                    String emailRegex = r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$';
-                    RegExp regExp = RegExp(emailRegex);
+                    // String emailRegex = r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$';
+                    // RegExp regExp = RegExp(emailRegex);
                     if (value == null || value.isEmpty) {
                       return "Please enter an email address.";
                     }
-                    if (!regExp.hasMatch(value)) {
-                      return "Please enter a valid email address.";
-                    }
+                    // if (!regExp.hasMatch(value)) {
+                    //   return "Please enter a valid email address.";
+                    // }
                     return null;
                   },
                   labelText: 'Email address',
@@ -59,18 +59,18 @@ class LoginView extends StatelessWidget {
                     if (value == null || value.isEmpty) {
                       return "enter an Password";
                     }
-                    if (value.length < 6) {
-                      return "Password is too short. Minimum length\nis 6 characters.";
-                    }
-                    if (!RegExp(r'[A-Z]').hasMatch(value)) {
-                      return "Password must contain at least one\nuppercase letter.";
-                    }
-                    if (!RegExp(r'[a-z]').hasMatch(value)) {
-                      return "Password must contain at least one\nlowercase letter.";
-                    }
-                    if (!RegExp(r'[0-9]').hasMatch(value)) {
-                      return "Password must contain at least one\nnumber.";
-                    }
+                    // if (value.length < 6) {
+                    //   return "Password is too short. Minimum length\nis 6 characters.";
+                    // }
+                    // if (!RegExp(r'[A-Z]').hasMatch(value)) {
+                    //   return "Password must contain at least one\nuppercase letter.";
+                    // }
+                    // if (!RegExp(r'[a-z]').hasMatch(value)) {
+                    //   return "Password must contain at least one\nlowercase letter.";
+                    // }
+                    // if (!RegExp(r'[0-9]').hasMatch(value)) {
+                    //   return "Password must contain at least one\nnumber.";
+                    // }
                     return null;
                   },
                   labelText: 'Password',
@@ -110,10 +110,7 @@ class LoginView extends StatelessWidget {
                     ),
                     TextButton(
                       onPressed: () {
-                        
-                        Get.toNamed(
-                          RoutesName.register
-                        );
+                        Get.toNamed(RoutesName.register);
                       },
                       child: const Text('Register'),
                     ),

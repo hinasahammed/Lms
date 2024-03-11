@@ -130,40 +130,40 @@ class CourseDetailsView extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Align(
-                      alignment: Alignment.center,
-                      child: SizedBox(
-                        height: 50,
-                        child: CustomButton(
-                          status: courseDetailsViewModel
-                              .favoriteStatusResponse.value,
-                          btntitle: 'Add to favorite',
-                          backColor: theme.colorScheme.primary,
-                          titleColor: theme.colorScheme.onPrimary,
-                          onPressed: () {
-                            courseDetailsViewModel.addToFavorites(
-                              context,
-                              courseData,
-                            );
-                          },
-                        ),
-                      ),
-                    ),
+                    // Align(
+                    //   alignment: Alignment.center,
+                    //   child: SizedBox(
+                    //     height: 50,
+                    //     child: CustomButton(
+                    //       // status: courseDetailsViewModel
+                    //       //     .favoriteStatusResponse.value,
+                    //       btntitle: 'Add to favorite',
+                    //       backColor: theme.colorScheme.primary,
+                    //       titleColor: theme.colorScheme.onPrimary,
+                    //       onPressed: () {
+                    //         // courseDetailsViewModel.addToFavorites(
+                    //         //   context,
+                    //         //   courseData,
+                    //         // );
+                    //       },
+                    //     ),
+                    //   ),
+                    // ),
                     const Gap(10),
                     SizedBox(
                       width: size.width,
                       height: 50,
                       child: CustomButton(
-                        status:
-                            courseDetailsViewModel.enrolledStatusResponse.value,
+                        // status:
+                        //     courseDetailsViewModel.enrolledStatusResponse.value,
                         btntitle: 'Enroll now',
                         backColor: theme.colorScheme.primary,
                         titleColor: theme.colorScheme.onPrimary,
                         onPressed: () {
-                          courseDetailsViewModel.enrollTheCourse(
-                            context,
-                            courseData,
-                          );
+                          // courseDetailsViewModel.enrollTheCourse(
+                          //   context,
+                          //   courseData,
+                          // );
                         },
                       ),
                     ),

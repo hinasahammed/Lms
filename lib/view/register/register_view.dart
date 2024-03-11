@@ -38,9 +38,9 @@ class RegisterView extends StatelessWidget {
                     if (value == null || value.isEmpty) {
                       return "Please enter a username.";
                     }
-                    if (value.length < 3) {
-                      return "Username must be at least 3 characters\nlong.";
-                    }
+                    // if (value.length < 3) {
+                    //   return "Username must be at least 3 characters\nlong.";
+                    // }
                     return null;
                   },
                   labelText: 'Username',
@@ -51,14 +51,14 @@ class RegisterView extends StatelessWidget {
                   keyboardType: TextInputType.emailAddress,
                   controller: registerViewmodel.emailController.value,
                   validator: (value) {
-                    String emailRegex = r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$';
-                    RegExp regExp = RegExp(emailRegex);
+                    // String emailRegex = r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$';
+                    // RegExp regExp = RegExp(emailRegex);
                     if (value == null || value.isEmpty) {
                       return "Please enter an email address.";
                     }
-                    if (!regExp.hasMatch(value)) {
-                      return "Please enter a valid email address.";
-                    }
+                    // if (!regExp.hasMatch(value)) {
+                    //   return "Please enter a valid email address.";
+                    // }
                     return null;
                   },
                   labelText: 'Email address',
@@ -72,18 +72,18 @@ class RegisterView extends StatelessWidget {
                     if (value == null || value.isEmpty) {
                       return "Enter an Password";
                     }
-                    if (value.length < 6) {
-                      return "Password is too short. Minimum length\nis 6 characters.";
-                    }
-                    if (!RegExp(r'[A-Z]').hasMatch(value)) {
-                      return "Password must contain at least one\nuppercase letter.";
-                    }
-                    if (!RegExp(r'[a-z]').hasMatch(value)) {
-                      return "Password must contain at least one\nlowercase letter.";
-                    }
-                    if (!RegExp(r'[0-9]').hasMatch(value)) {
-                      return "Password must contain at least one\nnumber.";
-                    }
+                    // if (value.length < 6) {
+                    //   return "Password is too short. Minimum length\nis 6 characters.";
+                    // }
+                    // if (!RegExp(r'[A-Z]').hasMatch(value)) {
+                    //   return "Password must contain at least one\nuppercase letter.";
+                    // }
+                    // if (!RegExp(r'[a-z]').hasMatch(value)) {
+                    //   return "Password must contain at least one\nlowercase letter.";
+                    // }
+                    // if (!RegExp(r'[0-9]').hasMatch(value)) {
+                    //   return "Password must contain at least one\nnumber.";
+                    // }
                     return null;
                   },
                   labelText: 'Password',
@@ -113,6 +113,9 @@ class RegisterView extends StatelessWidget {
                   child: CustomButton(
                     status: registerViewmodel.reqStatusResponse.value,
                     onPressed: () {
+                      // if (_formKey.currentState!.validate()) {
+                      //   registerViewmodel.registerUser(context);
+                      // }
                       if (_formKey.currentState!.validate()) {
                         registerViewmodel.registerUser(context);
                       }
