@@ -1,11 +1,9 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:lms/res/components/homeViewComponents/ongoing_courses.dart';
 import 'package:lms/res/components/homeViewComponents/popular_course.dart';
-import 'package:lms/res/components/commonWidget/shimmer_list_ui.dart';
 import 'package:lms/res/routes/routes_name.dart';
 
 class HomeView extends StatelessWidget {
@@ -26,134 +24,89 @@ class HomeView extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              Get.toNamed(RoutesName.favorites);
+              // Get.toNamed(RoutesName.favorites);
             },
             icon: const Icon(Icons.favorite_border),
           )
         ],
       ),
-      body: StreamBuilder(
-        stream: FirebaseFirestore.instance
-            .collection("user")
-            .doc(auth.currentUser!.uid)
-            .snapshots(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return ListView.builder(
-                itemCount: 5,
-                itemBuilder: (context, index) => const ShimmerList());
-          }
-          if (snapshot.hasError) {
-            return Text('Error: ${snapshot.error}');
-          }
-          if (!snapshot.hasData || snapshot.data == null) {
-            return Center(
-              child: Text(
-                'No data found!',
-                style: theme.textTheme.titleLarge!.copyWith(
-                  color: theme.colorScheme.onBackground,
-                ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 16,
+          vertical: 10,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Welcome!',
+              style: theme.textTheme.titleLarge!.copyWith(
+                color: theme.colorScheme.onBackground,
               ),
-            );
-          } else {
-            return SingleChildScrollView(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 16,
-                vertical: 10,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+            ),
+            const Gap(5),
+            RichText(
+              text: TextSpan(
                 children: [
-                  RichText(
-                    text: TextSpan(
-                      children: [
-                        TextSpan(
-                          text: 'Welcome!\n',
-                          style: theme.textTheme.titleLarge!.copyWith(
-                            color: theme.colorScheme.onBackground,
-                          ),
-                        ),
-                        TextSpan(
-                          text: snapshot.data!['userName']
-                                  .toString()
-                                  .toUpperCase()[0] +
-                              snapshot.data!['userName']
-                                  .toString()
-                                  .substring(1),
-                          style: theme.textTheme.titleLarge!.copyWith(
-                            color: theme.colorScheme.onBackground,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const Gap(5),
-                  RichText(
-                    text: TextSpan(
-                      children: [
-                        TextSpan(
-                          text: 'Find your favorite\n',
-                          style: theme.textTheme.headlineMedium!.copyWith(
-                            color: theme.colorScheme.onBackground,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        TextSpan(
-                          text: 'Course',
-                          style: theme.textTheme.headlineMedium!.copyWith(
-                            color: theme.colorScheme.primary,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const Gap(10),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Popular Courses',
-                        style: theme.textTheme.bodyLarge!.copyWith(
-                          color: theme.colorScheme.onBackground,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          Get.toNamed(RoutesName.allCourses);
-                        },
-                        child: Text(
-                          'See all',
-                          style: theme.textTheme.labelLarge!.copyWith(
-                            color: theme.colorScheme.onBackground,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 320,
-                    child: PopularCourse(),
-                  ),
-                  const Gap(10),
-                  Text(
-                    'Ongoing Courses',
-                    style: theme.textTheme.bodyLarge!.copyWith(
+                  TextSpan(
+                    text: 'Find your favorite\n',
+                    style: theme.textTheme.headlineMedium!.copyWith(
                       color: theme.colorScheme.onBackground,
-                      fontWeight: FontWeight.w600,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(
-                    height: size.height * .25,
-                    child: OngoingCourses(),
+                  TextSpan(
+                    text: 'Course',
+                    style: theme.textTheme.headlineMedium!.copyWith(
+                      color: theme.colorScheme.primary,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ],
               ),
-            );
-          }
-        },
+            ),
+            const Gap(10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Popular Courses',
+                  style: theme.textTheme.bodyLarge!.copyWith(
+                    color: theme.colorScheme.onBackground,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Get.toNamed(RoutesName.allCourses);
+                  },
+                  child: Text(
+                    'See all',
+                    style: theme.textTheme.labelLarge!.copyWith(
+                      color: theme.colorScheme.onBackground,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 320,
+              child: PopularCourse(),
+            ),
+            const Gap(10),
+            Text(
+              'Ongoing Courses',
+              style: theme.textTheme.bodyLarge!.copyWith(
+                color: theme.colorScheme.onBackground,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            SizedBox(
+              height: size.height * .25,
+              child: OngoingCourses(),
+            ),
+          ],
+        ),
       ),
     );
   }

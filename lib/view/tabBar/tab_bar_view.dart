@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:lms/view/account/account_view.dart';
 import 'package:lms/view/enrolled/enrolled_view.dart';
 import 'package:lms/view/home/home_view.dart';
 import 'package:lms/view/search/search_view.dart';
+import 'package:lms/viewmodel/controller/courseDetails/course_details_viewmodel.dart';
 
 class CustomTabBarView extends StatefulWidget {
   const CustomTabBarView({super.key});
@@ -21,6 +23,14 @@ class _CustomTabBarViewState extends State<CustomTabBarView> {
     const EnrolledView(),
     AccountView(),
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    courseDetailsViewModel.getCourseData(context);
+  }
+
+  final courseDetailsViewModel = Get.put(CourseDetailsViewModel());
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);

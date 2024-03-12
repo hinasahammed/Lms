@@ -2,15 +2,16 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:lms/models/courseModel/course_model.dart';
+import 'package:lms/models/lmsCourseModel/lms_course_model.dart';
 import 'package:lms/res/components/enrolledViewComponents/module_description_card.dart';
 import 'package:lms/utils/course_list.dart';
 import 'package:video_player/video_player.dart';
 
 class EnrolledCourseDetails extends StatefulWidget {
-  final String courseTitle;
+  final LmsCourseModel courseModel;
   const EnrolledCourseDetails({
     super.key,
-    required this.courseTitle,
+    required this.courseModel,
   });
 
   @override
@@ -30,7 +31,7 @@ class _EnrolledCourseDetailsState extends State<EnrolledCourseDetails> {
   @override
   void initState() {
     super.initState();
-    course = getCourseByTitle(widget.courseTitle);
+    course = getCourseByTitle(widget.courseModel.courseTitle ?? '');
     _controller = VideoPlayerController.networkUrl(Uri.parse(
       videoUrl.isEmpty ? course!.modulemodel[0].videoUrl[0] : videoUrl,
     ))
@@ -64,7 +65,7 @@ class _EnrolledCourseDetailsState extends State<EnrolledCourseDetails> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-final size = MediaQuery.sizeOf(context);
+    final size = MediaQuery.sizeOf(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Video'),

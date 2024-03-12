@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lms/models/courseModel/course_model.dart';
 import 'package:lms/utils/utils.dart';
-import 'package:lms/view/courseDetails/course_details_view.dart';
 
 class FavoriteViewModel extends GetxController {
   void deleteFavorite(String courseName, BuildContext context) {
@@ -53,6 +52,6 @@ class FavoriteViewModel extends GetxController {
                 videoUrl: List<String>.from(x['videoUrl']),
               ))),
     );
-    Get.to(() => CourseDetailsView(courseData: courseModel));
+    // Get.to(() => CourseDetailsView(courseData: courseModel));
   }
 }

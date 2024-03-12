@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lms/models/courseModel/course_model.dart';
-import 'package:lms/utils/course_list.dart';
+import 'package:lms/models/lmsCourseModel/lms_course_model.dart';
+import 'package:lms/viewmodel/controller/courseDetails/course_details_viewmodel.dart';
 
 class SearchViewModel extends GetxController {
   final searchController = TextEditingController().obs;
-  RxList<CourseModel> filteredList = <CourseModel>[].obs;
+  RxList<LmsCourseModel> filteredList = <LmsCourseModel>[].obs;
+  final courseDetailsViewModel = Get.put(CourseDetailsViewModel());
 
   @override
   void onInit() {
@@ -18,8 +19,8 @@ class SearchViewModel extends GetxController {
   }
 
   void updateFilteredList() {
-    filteredList.assignAll(CourseList.courseList.where(
-      (element) => element.courseTitle
+    filteredList.assignAll(courseDetailsViewModel.courseList.where(
+      (element) => element.courseTitle!
           .toLowerCase()
           .contains(searchController.value.text.toLowerCase()),
     ));

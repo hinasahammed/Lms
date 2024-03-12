@@ -32,8 +32,7 @@ class NetworkApiServices extends BaseApiServices {
               seconds: 15,
             ),
           );
-      print(response.statusCode);
-      print(jsonDecode(response.body));
+
       responseJson = returnResponse(response);
       return responseJson;
     } on InternetException {
