@@ -5,8 +5,6 @@ import 'package:lms/res/routes/routes.dart';
 import 'package:lms/viewmodel/services/account/account_services.dart';
 import 'firebase_options.dart';
 
-
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -29,5 +27,4 @@ class MyApp extends StatelessWidget {
       getPages: Routes.appRoute(),
     );
   }
-
 }

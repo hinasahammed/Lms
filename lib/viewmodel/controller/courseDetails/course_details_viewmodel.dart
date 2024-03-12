@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lms/data/response/status.dart';
-import 'package:lms/models/lmsCourseModel/lms_course_model.dart';
+import 'package:lms/models/lms_course_model/lms_course_model.dart';
 import 'package:lms/repository/course/course_repository.dart';
 import 'package:lms/res/components/courseDetailsComponents/enroll_adding_sheet.dart';
 import 'package:lms/utils/utils.dart';

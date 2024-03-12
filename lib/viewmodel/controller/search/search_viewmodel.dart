@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lms/models/lmsCourseModel/lms_course_model.dart';
+import 'package:lms/models/lms_course_model/lms_course_model.dart';
 import 'package:lms/viewmodel/controller/courseDetails/course_details_viewmodel.dart';
 
 class SearchViewModel extends GetxController {

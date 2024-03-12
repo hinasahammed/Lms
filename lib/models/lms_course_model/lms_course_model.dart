@@ -7,12 +7,15 @@ part 'lms_course_model.g.dart';
 @JsonSerializable()
 class LmsCourseModel {
 	String? courseId;
+	@JsonKey(name: 'image_url') 
+	String? imageUrl;
 	String? courseTitle;
 	String? courseDescription;
 	List<Module>? modules;
 
 	LmsCourseModel({
 		this.courseId, 
+		this.imageUrl, 
 		this.courseTitle, 
 		this.courseDescription, 
 		this.modules, 

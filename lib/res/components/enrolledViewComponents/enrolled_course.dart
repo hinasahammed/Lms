@@ -1,11 +1,15 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:lms/models/lmsCourseModel/lms_course_model.dart';
+import 'package:lms/models/lms_course_model/lms_course_model.dart';
 import 'package:lms/res/components/enrolledViewComponents/enrolled_course_details.dart';
 import 'package:lms/res/components/commonWidget/shimmer_list_ui.dart';
 import 'package:lms/res/components/enrolledViewComponents/no_enrolled_course_ui.dart';
 import 'package:lms/viewmodel/controller/courseDetails/course_details_viewmodel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shimmer/shimmer.dart';
 
 class EnrolledCourse extends StatefulWidget {
   const EnrolledCourse({super.key});
@@ -32,6 +36,7 @@ class _EnrolledCourseState extends State<EnrolledCourse> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final courseDetailsViewModel = Get.put(CourseDetailsViewModel());
+    final size = MediaQuery.sizeOf(context);
     return FutureBuilder(
       future: courseDetailsViewModel.getCourseData(context),
       builder: (context, snapshot) {
@@ -76,16 +81,47 @@ class _EnrolledCourseState extends State<EnrolledCourse> {
                     );
                   },
                   child: Card(
-                    child: ListTile(
-                      title: Text(
-                        data.courseTitle ?? '',
-                        style: theme.textTheme.bodyLarge!.copyWith(
-                          color: theme.colorScheme.onBackground,
+                      child: Container(
+                    padding: const EdgeInsets.all(8),
+                    child: Row(
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(15),
+                          child: CachedNetworkImage(
+                            width: size.width * .2,
+                            height: size.height * .1,
+                            imageUrl: data.imageUrl ??
+                                'https://www.google.com/url?sa=i&url=https%3A%2F%2Fcamarasal.com%2Famet-consectetur-adipisicing-elit%2Fdefault-image-5-1%2F&psig=AOvVaw2G2rNE991rS21WNkzEXE3r&ust=1710351464783000&source=images&cd=vfe&opi=89978449&ved=0CBMQjRxqFwoTCJDf2_Sh74QDFQAAAAAdAAAAABAE',
+                            fit: BoxFit.cover,
+                            placeholder: (context, url) => Shimmer.fromColors(
+                              baseColor: Colors.black.withOpacity(0.2),
+                              highlightColor: Colors.white54,
+                              enabled: true,
+                              child: Container(
+                                width: size.width * .2,
+                                height: size.height * .1,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15),
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                            errorWidget: (context, url, error) =>
+                                const Icon(Icons.error),
+                          ),
                         ),
-                      ),
-                      trailing: const Icon(Icons.swipe_right_alt),
+                        const Gap(10),
+                        Expanded(
+                          child: Text(
+                            data.courseTitle ?? '',
+                            style: theme.textTheme.bodyLarge!.copyWith(
+                              color: theme.colorScheme.onBackground,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
+                  )),
                 );
               },
             );
