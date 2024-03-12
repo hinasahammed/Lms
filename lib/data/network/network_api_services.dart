@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:lms/data/exception/app_exception.dart';
@@ -35,7 +36,7 @@ class NetworkApiServices extends BaseApiServices {
 
       responseJson = returnResponse(response);
       return responseJson;
-    } on InternetException {
+    } on SocketException {
       throw InternetException();
     } on RequestTimeoutEception {
       throw RequestTimeoutEception();

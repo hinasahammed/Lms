@@ -21,7 +21,7 @@ class _CustomTabBarViewState extends State<CustomTabBarView> {
     HomeView(),
     const SearchView(),
     const EnrolledView(),
-    AccountView(),
+    const AccountView(),
   ];
 
   @override

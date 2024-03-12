@@ -39,7 +39,6 @@ class CourseDetailsViewModel extends GetxController {
     setReqResponse(Status.loading);
     await repo.getCourse().then((value) {
       setReqResponse(Status.completed);
-      print(value);
       courseList.clear();
       for (var element in value) {
         courseList.add(
@@ -50,7 +49,6 @@ class CourseDetailsViewModel extends GetxController {
       }
     }).onError((error, stackTrace) {
       setReqResponse(Status.loading);
-      print(error);
       Utils.showSnackbarToast(
         context,
         "Failed",

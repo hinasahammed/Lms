@@ -1,10 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:lms/models/courseModel/course_model.dart';
 import 'package:lms/models/lmsCourseModel/lms_course_model.dart';
 import 'package:lms/res/components/enrolledViewComponents/module_description_card.dart';
-import 'package:lms/utils/course_list.dart';
 import 'package:video_player/video_player.dart';
 
 class EnrolledCourseDetails extends StatefulWidget {
@@ -21,19 +19,17 @@ class EnrolledCourseDetails extends StatefulWidget {
 class _EnrolledCourseDetailsState extends State<EnrolledCourseDetails> {
   late VideoPlayerController _controller;
   double progressValue = 0.0;
-  late CourseModel? course;
   String videoUrl = '';
-  List<double> videoProgressList = [];
-  double overallProgress = 0.0;
 
   final auth = FirebaseAuth.instance;
 
   @override
   void initState() {
     super.initState();
-    course = getCourseByTitle(widget.courseModel.courseTitle ?? '');
     _controller = VideoPlayerController.networkUrl(Uri.parse(
-      videoUrl.isEmpty ? course!.modulemodel[0].videoUrl[0] : videoUrl,
+      videoUrl.isEmpty
+          ? widget.courseModel.modules![0].lectures![0].videoUrl ?? ''
+          : videoUrl,
     ))
       ..initialize().then((_) {
         setState(() {
@@ -46,20 +42,6 @@ class _EnrolledCourseDetailsState extends State<EnrolledCourseDetails> {
           });
         });
       });
-  }
-
-  CourseModel getCourseByTitle(String title) {
-    return CourseList.courseList.firstWhere(
-      (course) => course.courseTitle == title,
-      orElse: () => CourseModel(
-        courseTitle: 'Not Found',
-        courseDesc: 'Course not found with title: $title',
-        imageurl: '', // Provide default values for other properties
-        whatYouWillLearnPoints: [],
-        requirmentDetails: [],
-        modulemodel: [],
-      ),
-    );
   }
 
   @override
@@ -126,88 +108,79 @@ class _EnrolledCourseDetailsState extends State<EnrolledCourseDetails> {
                   ),
             const Gap(20),
             Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 16,
-                vertical: 10,
-              ),
-              child: course != null
-                  ? Column(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 10,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      widget.courseModel.courseTitle ?? '',
+                      style: theme.textTheme.titleLarge!.copyWith(
+                        color: theme.colorScheme.onBackground,
+                      ),
+                    ),
+                    const Gap(10),
+                    Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          course!.courseTitle,
-                          style: theme.textTheme.titleLarge!.copyWith(
-                            color: theme.colorScheme.onBackground,
-                          ),
-                        ),
-                        const Gap(10),
-                        Column(
+                      children: widget.courseModel.modules!.map((courseData) {
+                        return Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: course!.modulemodel.map((courseData) {
-                            return Column(
+                          children: [
+                            Text(
+                              courseData.moduleHeading ?? '',
+                              style: theme.textTheme.bodyLarge!.copyWith(
+                                color: theme.colorScheme.onBackground,
+                              ),
+                            ),
+                            Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  courseData.moduleHeading,
-                                  style: theme.textTheme.bodyLarge!.copyWith(
-                                    color: theme.colorScheme.onBackground,
-                                  ),
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: List.generate(
-                                    courseData.moduleDesc.length,
-                                    (descIndex) {
-                                      var data =
-                                          courseData.moduleDesc[descIndex];
-                                      return ModuleDescriptionCard(
-                                        descriptiontitle: data,
-                                        onPressed: () {
-                                          _controller.pause();
+                              children: List.generate(
+                                courseData.lectures!.length,
+                                (descIndex) {
+                                  var data = courseData.lectures![descIndex];
+                                  return ModuleDescriptionCard(
+                                    descriptiontitle: data.title ?? '',
+                                    onPressed: () {
+                                      _controller.pause();
+                                      setState(() {
+                                        videoUrl = data.videoUrl ?? '';
+                                      });
+                                      _controller = VideoPlayerController
+                                          .networkUrl(Uri.parse(
+                                        videoUrl.isEmpty
+                                            ? widget.courseModel.modules![0]
+                                                .lectures![0].videoUrl![0]
+                                            : videoUrl,
+                                      ))
+                                        ..initialize().then((_) {
                                           setState(() {
-                                            videoUrl =
-                                                courseData.videoUrl[descIndex];
-                                          });
-                                          _controller = VideoPlayerController
-                                              .networkUrl(Uri.parse(
-                                            videoUrl.isEmpty
-                                                ? course!
-                                                    .modulemodel[0].videoUrl[0]
-                                                : videoUrl,
-                                          ))
-                                            ..initialize().then((_) {
+                                            _controller.addListener(() {
                                               setState(() {
-                                                _controller.addListener(() {
-                                                  setState(() {
-                                                    progressValue = _controller
-                                                            .value
-                                                            .position
-                                                            .inMilliseconds
-                                                            .toDouble() /
-                                                        _controller
-                                                            .value
-                                                            .duration
-                                                            .inMilliseconds
-                                                            .toDouble();
-                                                  });
-                                                });
+                                                progressValue = _controller
+                                                        .value
+                                                        .position
+                                                        .inMilliseconds
+                                                        .toDouble() /
+                                                    _controller.value.duration
+                                                        .inMilliseconds
+                                                        .toDouble();
                                               });
                                             });
-                                        },
-                                      );
+                                          });
+                                        });
                                     },
-                                  ),
-                                ),
-                              ],
-                            );
-                          }).toList(),
-                        ),
-                      ],
-                    )
-                  : const Center(
-                      child: Text('Course not found!'),
+                                  );
+                                },
+                              ),
+                            ),
+                          ],
+                        );
+                      }).toList(),
                     ),
-            ),
+                  ],
+                )),
           ],
         ),
       ),

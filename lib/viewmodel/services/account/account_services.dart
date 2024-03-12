@@ -1,26 +1,28 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lms/res/routes/routes_name.dart';
 import 'package:lms/utils/utils.dart';
-import 'package:lms/view/login/login_view.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AccountServices {
-  final auth = FirebaseAuth.instance;
-  void logout(BuildContext context) {
-    Utils.showDialog(
-      context,
-      () async {
-        await auth.signOut().then(
-              (value) => Get.offAll(() => LoginView()),
-            );
-      },
-      DialogType.question,
-      "Logout",
-      "Are you want to logout?",
-    );
+  void logout(BuildContext context) async {
+    final pref = await SharedPreferences.getInstance();
+    if (context.mounted) {
+      Utils.showDialog(
+        context,
+        () async {
+          pref
+              .setBool('isLogedin', false)
+              .then((value) => Get.offAllNamed(RoutesName.login));
+        },
+        DialogType.question,
+        "Logout",
+        "Are you want to logout?",
+      );
+    }
   }
 
   static final _getStorage = GetStorage();
@@ -47,7 +49,7 @@ class AccountServices {
 class MyThemes {
   static final ThemeData appThemeData = ThemeData(
     colorScheme: ColorScheme.fromSeed(
-      seedColor:  const Color(0xff2096C7),
+      seedColor: const Color(0xff2096C7),
       brightness: Brightness.light,
     ),
     useMaterial3: true,
@@ -56,11 +58,10 @@ class MyThemes {
 
   static final ThemeData darkThemeData = ThemeData(
     colorScheme: ColorScheme.fromSeed(
-      seedColor:  const Color(0xff2096C7),
+      seedColor: const Color(0xff2096C7),
       brightness: Brightness.dark,
     ),
     useMaterial3: true,
     textTheme: GoogleFonts.poppinsTextTheme(),
   );
 }
-
