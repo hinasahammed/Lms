@@ -13,8 +13,7 @@ class RegisterViewmodel extends GetxController {
   final passwordController = TextEditingController().obs;
   final confirmPasswordController = TextEditingController().obs;
 
-  // final auth = FirebaseAuth.instance;
-  // final firestore = FirebaseFirestore.instance;
+
   final repo = RegisterRepository();
 
   void setReqStatusResponse(Status status) {
@@ -54,89 +53,6 @@ class RegisterViewmodel extends GetxController {
       );
     });
   }
-
-  // void registerUser(BuildContext context) async {
-  //   setReqStatusResponse(Status.loading);
-  //   try {
-  //     await auth
-  //         .createUserWithEmailAndPassword(
-  //       email: emailController.value.text,
-  //       password: confirmPasswordController.value.text,
-  //     )
-  //         .then(
-  //       (value) {
-  //         addUserData();
-
-  //         Get.toNamed(RoutesName.login);
-  //         Utils.showSnackbarToast(
-  //           context,
-  //           "Account created successfully, now try to login.",
-  //           Icons.check_circle_rounded,
-  //         );
-  //       },
-  //     );
-  //     setReqStatusResponse(Status.completed);
-  //   } on FirebaseAuthException catch (error) {
-  //     setReqStatusResponse(Status.error);
-  //     if (error.code == 'email-already-in-use') {
-  //       if (context.mounted) {
-  //         Utils.showSnackbarToast(
-  //           context,
-  //           "The email address is already in use by another account.",
-  //           Icons.error,
-  //         );
-  //       }
-  //     } else if (error.code == 'invalid-email') {
-  //       if (context.mounted) {
-  //         Utils.showSnackbarToast(
-  //           context,
-  //           "The email address is address not valid.",
-  //           Icons.error,
-  //         );
-  //       }
-  //     } else if (error.code == 'operation-not-allowed') {
-  //       if (context.mounted) {
-  //         Utils.showSnackbarToast(
-  //           context,
-  //           "Something went wrong.",
-  //           Icons.error,
-  //         );
-  //       }
-  //     } else if (error.code == 'weak-password') {
-  //       if (context.mounted) {
-  //         Utils.showSnackbarToast(
-  //           context,
-  //           "The password is not strong enough.",
-  //           Icons.error,
-  //         );
-  //       }
-  //     } else {
-  //       if (context.mounted) {
-  //         Utils.showSnackbarToast(
-  //           context,
-  //           "Something went wrong.",
-  //           Icons.error,
-  //         );
-  //       }
-  //     }
-  //   }
-  // }
-
-  // void addUserData() {
-  //   try {
-  //     firestore.collection("user").doc(auth.currentUser!.uid).set(
-  //       {
-  //         "userName": userNameController.value.text,
-  //         "email": emailController.value.text,
-  //         "uid": auth.currentUser!.uid,
-  //       },
-  //     );
-  //   } catch (e) {
-  //     if (kDebugMode) {
-  //       print(e);
-  //     }
-  //   }
-  // }
 
   @override
   void dispose() {
