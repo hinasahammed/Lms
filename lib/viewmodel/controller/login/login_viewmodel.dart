@@ -26,24 +26,27 @@ class LoginViewModel extends GetxController {
       "password": passwordController.value.text,
     }).then((value) {
       setReqStatusResponse(Status.completed);
-      if (value['message'] == "Login successful.") {
-        setLogedin(true);
-        Get.offAllNamed(RoutesName.tabBar);
-        Utils.showSnackbarToast(
-          context,
-          "Login successful.",
-          Icons.check_circle,
-        );
-      }
-      if (value['message'] == "User not found.") {
-        Utils.showSnackbarToast(
-          context,
-          "User not found.",
-          Icons.error,
-        );
+      if (value != null) {
+        if (value['message'] == "Login successful.") {
+          setLogedin(true);
+          Get.offAllNamed(RoutesName.tabBar);
+          Utils.showSnackbarToast(
+            context,
+            "Login successful.",
+            Icons.check_circle,
+          );
+        }
+        if (value['message'] == "User not found.") {
+          Utils.showSnackbarToast(
+            context,
+            "User not found.",
+            Icons.error,
+          );
+        }
       }
     }).onError((error, stackTrace) {
       setReqStatusResponse(Status.error);
+
       Utils.showSnackbarToast(
         context,
         "Failed",

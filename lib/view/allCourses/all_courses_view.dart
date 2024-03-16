@@ -41,6 +41,15 @@ class AllCoursesView extends StatelessWidget {
                 ),
               ),
             );
+          } else if (snapshot.hasError) {
+            return Center(
+              child: Text(
+                '$snapshot.hasError',
+                style: theme.textTheme.titleLarge!.copyWith(
+                  color: theme.colorScheme.onBackground,
+                ),
+              ),
+            );
           } else if (!snapshot.hasData ||
               snapshot.data == null ||
               snapshot.data!.isEmpty) {

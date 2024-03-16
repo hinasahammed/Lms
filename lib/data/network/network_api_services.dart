@@ -37,7 +37,7 @@ class NetworkApiServices extends BaseApiServices {
       responseJson = returnResponse(response);
       return responseJson;
     } on SocketException {
-      throw InternetException();
+      throw InternetException('No internet');
     } on RequestTimeoutEception {
       throw RequestTimeoutEception();
     } on ServerException {
@@ -60,8 +60,8 @@ class NetworkApiServices extends BaseApiServices {
 
       responseJson = returnResponse(response);
       return responseJson;
-    } on InternetException {
-      throw InternetException();
+    } on SocketException {
+      throw InternetException('No internet');
     } on RequestTimeoutEception {
       throw RequestTimeoutEception();
     } on ServerException {
