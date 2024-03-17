@@ -39,13 +39,16 @@ class NetworkApiServices extends BaseApiServices {
     } on SocketException {
       throw InternetException('No internet');
     } on RequestTimeoutEception {
-      throw RequestTimeoutEception();
-    } on ServerException {
-      throw ServerException();
+      throw RequestTimeoutEception('Time out');
+    } on FormatException {
+      throw ServerException('Internal server error');
+    } on HttpException {
+      throw ServerException('Http error occured');
     } catch (e) {
       if (kDebugMode) {
         print(e);
       }
+      rethrow;
     }
   }
 
@@ -63,13 +66,16 @@ class NetworkApiServices extends BaseApiServices {
     } on SocketException {
       throw InternetException('No internet');
     } on RequestTimeoutEception {
-      throw RequestTimeoutEception();
-    } on ServerException {
-      throw ServerException();
+      throw RequestTimeoutEception('Time out');
+    } on FormatException {
+      throw ServerException('Internal server error');
+    } on HttpException {
+      throw ServerException('Http error occured');
     } catch (e) {
       if (kDebugMode) {
         print(e);
       }
+      rethrow;
     }
   }
 }

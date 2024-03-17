@@ -46,12 +46,20 @@ class LoginViewModel extends GetxController {
       }
     }).onError((error, stackTrace) {
       setReqStatusResponse(Status.error);
-
-      Utils.showSnackbarToast(
-        context,
-        "Failed",
-        Icons.error,
-      );
+      print(error);
+      if (error.toString() == "No internetNo internet") {
+        Utils.showSnackbarToast(
+          context,
+          "No internet",
+          Icons.error,
+        );
+      } else {
+        Utils.showSnackbarToast(
+          context,
+          "Failed",
+          Icons.error,
+        );
+      }
     });
   }
 
