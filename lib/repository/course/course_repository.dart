@@ -16,4 +16,11 @@ class CourseRepository {
     );
     return result;
   }
+  Future<dynamic> enrollCourseId(dynamic data) async {
+    var result = await _api.postApi(
+      AppUrl.enrollCourse,
+      data,
+    );
+    return result;
+  }
 }

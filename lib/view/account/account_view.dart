@@ -1,10 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 import 'package:lms/assets/icons/icons_asset.dart';
 import 'package:lms/res/components/accountViewComponents/account_tile.dart';
+import 'package:lms/res/routes/routes_name.dart';
 import 'package:lms/viewmodel/services/account/account_services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -76,7 +78,7 @@ class _AccountViewState extends State<AccountView> {
               trailing: const Icon(Icons.arrow_circle_right),
               imageUrl: IconsAsset.edit,
               onTap: () {
-                // Get.toNamed(RoutesName.editProfile);
+                Get.toNamed(RoutesName.editProfile);
               },
               title: 'Edit profile',
             ),

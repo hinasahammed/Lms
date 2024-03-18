@@ -1,47 +1,40 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lms/data/response/status.dart';
+import 'package:lms/repository/reset/reset_password_repo.dart';
 import 'package:lms/utils/utils.dart';
-import 'package:lms/view/login/login_view.dart';
 
 class ResetViewModel extends GetxController {
   Rx<Status> reqStatusResponse = Status.completed.obs;
 
   final forgetEmailController = TextEditingController().obs;
-  final auth = FirebaseAuth.instance;
+  final repo = ResetPasswordRepo();
 
   void setReqStatusResponse(Status status) {
     reqStatusResponse.value = status;
   }
 
   void forgetPassword(BuildContext context) async {
-    try {
-      setReqStatusResponse(Status.loading);
-
-      await auth
-          .sendPasswordResetEmail(
-        email: forgetEmailController.value.text,
-      )
-          .then((value) {
-        setReqStatusResponse(Status.completed);
-
-        Get.offAll(() => LoginView());
+    setReqStatusResponse(Status.loading);
+    await repo.forgetPassword({"email": forgetEmailController.value.text}).then(
+        (value) {
+      setReqStatusResponse(Status.completed);
+      Get.back();
+      forgetEmailController.value.clear();
+      if (value['success'] == true) {
         Utils.showSnackbarToast(
           context,
-          "Your password reset link send to your email",
+          "forget password link shared on your mail.",
           Icons.check_circle_rounded,
         );
-      });
-    } catch (e) {
-      setReqStatusResponse(Status.error);
-      if (context.mounted) {
-        Utils.showSnackbarToast(
-          context,
-          "Something went wrong!",
-          Icons.error,
-        );
       }
-    }
+    }).onError((error, stackTrace) {
+      setReqStatusResponse(Status.error);
+      Utils.showSnackbarToast(
+        context,
+        "Something went wrong!",
+        Icons.check_circle_rounded,
+      );
+    });
   }
 }

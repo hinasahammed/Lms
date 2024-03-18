@@ -26,9 +26,11 @@ class LoginViewModel extends GetxController {
       "password": passwordController.value.text,
     }).then((value) {
       setReqStatusResponse(Status.completed);
+
       if (value != null) {
         if (value['message'] == "Login successful.") {
-          setLogedin(true);
+          setLogedin(true, value['user_id']);
+
           Get.offAllNamed(RoutesName.tabBar);
           Utils.showSnackbarToast(
             context,
@@ -46,7 +48,6 @@ class LoginViewModel extends GetxController {
       }
     }).onError((error, stackTrace) {
       setReqStatusResponse(Status.error);
-      print(error);
       if (error.toString() == "No internetNo internet") {
         Utils.showSnackbarToast(
           context,
@@ -63,8 +64,9 @@ class LoginViewModel extends GetxController {
     });
   }
 
-  void setLogedin(bool value) async {
+  void setLogedin(bool value, int userId) async {
     final pref = await SharedPreferences.getInstance();
+    pref.setInt("user_id", userId);
     pref.setBool('isLogedin', value);
   }
 

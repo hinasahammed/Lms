@@ -8,16 +8,10 @@ import 'package:lms/utils/utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CourseDetailsViewModel extends GetxController {
-  // Rx<Status> favoriteStatusResponse = Status.completed.obs;
   Rx<Status> enrolledStatusResponse = Status.completed.obs;
   Rx<Status> reqResponse = Status.completed.obs;
   RxList<LmsCourseModel> courseList = <LmsCourseModel>[].obs;
   List<String> allEnrolledCourse = [];
-  // final firestore = FirebaseFirestore.instance;
-  // final auth = FirebaseAuth.instance;
-  // void setfavoriteStatusResponse(Status status) {
-  //   favoriteStatusResponse.value = status;
-  // }
 
   final emailController = TextEditingController().obs;
   final mobController = TextEditingController().obs;
@@ -69,42 +63,61 @@ class CourseDetailsViewModel extends GetxController {
     );
   }
 
-  void enrollNow(BuildContext context, String courseName) async {
-    final pref = await SharedPreferences.getInstance();
+  void enrollCourseNow(BuildContext context) async {
     setenrolledStatusResponse(Status.loading);
-    await repo.enrollCourse(
-      {
-        "email": emailController.value.text,
-        "mob": mobController.value.text,
-        "name": nameController.value.text,
-        "msg": messageController.value.text,
-      },
-    ).then((value) {
+    final pref = await SharedPreferences.getInstance();
+    final id = pref.getInt("user_id");
+    await repo.enrollCourseId({
+      "user_id": id,
+    }).then((value) {
       setenrolledStatusResponse(Status.completed);
-      allEnrolledCourse = pref.getStringList("enrolledCourse") ?? [];
-      if (!allEnrolledCourse.contains(courseName)) {
-        allEnrolledCourse.add(courseName);
-      }
-      pref.setStringList("enrolledCourse", allEnrolledCourse);
-      emailController.value.clear();
-      mobController.value.clear();
-      nameController.value.clear();
-      messageController.value.clear();
       Get.back();
-      if (value['message'] == "thanks") {
-        Utils.showSnackbarToast(
-          context,
-          "Thanks for enrolling.",
-          Icons.check_circle,
-        );
-      }
-    }).onError((error, stackTrace) {
-      setenrolledStatusResponse(Status.error);
       Utils.showSnackbarToast(
         context,
-        "Failed",
-        Icons.error,
+        "Thanks for enrolling.",
+        Icons.check_circle,
       );
+    }).onError((error, stackTrace) {
+      setenrolledStatusResponse(Status.error);
     });
   }
+
+  // void enrollNow(BuildContext context, String courseName) async {
+  //   final pref = await SharedPreferences.getInstance();
+  //   setenrolledStatusResponse(Status.loading);
+  //   await repo.enrollCourse(
+  //     {
+  //       "email": emailController.value.text,
+  //       "mob": mobController.value.text,
+  //       "name": nameController.value.text,
+  //       "msg": messageController.value.text,
+  //     },
+  //   ).then((value) {
+  //     setenrolledStatusResponse(Status.completed);
+  //     allEnrolledCourse = pref.getStringList("enrolledCourse") ?? [];
+  //     if (!allEnrolledCourse.contains(courseName)) {
+  //       allEnrolledCourse.add(courseName);
+  //     }
+  //     pref.setStringList("enrolledCourse", allEnrolledCourse);
+  //     emailController.value.clear();
+  //     mobController.value.clear();
+  //     nameController.value.clear();
+  //     messageController.value.clear();
+  //     Get.back();
+  //     if (value['message'] == "thanks") {
+  //       Utils.showSnackbarToast(
+  //         context,
+  //         "Thanks for enrolling.",
+  //         Icons.check_circle,
+  //       );
+  //     }
+  //   }).onError((error, stackTrace) {
+  //     setenrolledStatusResponse(Status.error);
+  //     Utils.showSnackbarToast(
+  //       context,
+  //       "Failed",
+  //       Icons.error,
+  //     );
+  //   });
+  // }
 }

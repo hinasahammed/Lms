@@ -31,6 +31,8 @@ class _CustomTabBarViewState extends State<CustomTabBarView> {
   }
 
   final courseDetailsViewModel = Get.put(CourseDetailsViewModel());
+ 
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
