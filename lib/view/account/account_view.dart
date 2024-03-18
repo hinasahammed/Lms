@@ -83,14 +83,14 @@ class _AccountViewState extends State<AccountView> {
               title: 'Edit profile',
             ),
             const Gap(10),
-            AccountTile(
-              trailing: const Icon(Icons.arrow_circle_right),
-              imageUrl: IconsAsset.favorite,
-              onTap: () {
-                // Get.toNamed(RoutesName.favorites);
-              },
-              title: 'Favorites',
-            ),
+            // AccountTile(
+            //   trailing: const Icon(Icons.arrow_circle_right),
+            //   imageUrl: IconsAsset.favorite,
+            //   onTap: () {
+            //     // Get.toNamed(RoutesName.favorites);
+            //   },
+            //   title: 'Favorites',
+            // ),
             AccountTile(
               title: 'Total enrolled',
               trailing: Container(

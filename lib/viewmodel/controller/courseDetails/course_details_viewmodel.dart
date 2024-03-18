@@ -82,42 +82,43 @@ class CourseDetailsViewModel extends GetxController {
     });
   }
 
-  // void enrollNow(BuildContext context, String courseName) async {
-  //   final pref = await SharedPreferences.getInstance();
-  //   setenrolledStatusResponse(Status.loading);
-  //   await repo.enrollCourse(
-  //     {
-  //       "email": emailController.value.text,
-  //       "mob": mobController.value.text,
-  //       "name": nameController.value.text,
-  //       "msg": messageController.value.text,
-  //     },
-  //   ).then((value) {
-  //     setenrolledStatusResponse(Status.completed);
-  //     allEnrolledCourse = pref.getStringList("enrolledCourse") ?? [];
-  //     if (!allEnrolledCourse.contains(courseName)) {
-  //       allEnrolledCourse.add(courseName);
-  //     }
-  //     pref.setStringList("enrolledCourse", allEnrolledCourse);
-  //     emailController.value.clear();
-  //     mobController.value.clear();
-  //     nameController.value.clear();
-  //     messageController.value.clear();
-  //     Get.back();
-  //     if (value['message'] == "thanks") {
-  //       Utils.showSnackbarToast(
-  //         context,
-  //         "Thanks for enrolling.",
-  //         Icons.check_circle,
-  //       );
-  //     }
-  //   }).onError((error, stackTrace) {
-  //     setenrolledStatusResponse(Status.error);
-  //     Utils.showSnackbarToast(
-  //       context,
-  //       "Failed",
-  //       Icons.error,
-  //     );
-  //   });
-  // }
+  void enrollNow(BuildContext context, String courseName) async {
+    final pref = await SharedPreferences.getInstance();
+    setenrolledStatusResponse(Status.loading);
+    await repo.enrollCourse(
+      {
+        "email": emailController.value.text,
+        "mob": mobController.value.text,
+        "name": nameController.value.text,
+        "msg": messageController.value.text,
+      },
+    ).then((value) {
+      setenrolledStatusResponse(Status.completed);
+      allEnrolledCourse = pref.getStringList("enrolledCourse") ?? [];
+      if (!allEnrolledCourse.contains(courseName)) {
+        allEnrolledCourse.add(courseName);
+      }
+      pref.setStringList("enrolledCourse", allEnrolledCourse);
+      emailController.value.clear();
+      mobController.value.clear();
+      nameController.value.clear();
+      messageController.value.clear();
+      Get.back();
+      enrollCourseNow(context);
+      if (value['message'] == "thanks") {
+        Utils.showSnackbarToast(
+          context,
+          "Thanks for enrolling.",
+          Icons.check_circle,
+        );
+      }
+    }).onError((error, stackTrace) {
+      setenrolledStatusResponse(Status.error);
+      Utils.showSnackbarToast(
+        context,
+        "Failed",
+        Icons.error,
+      );
+    });
+  }
 }
