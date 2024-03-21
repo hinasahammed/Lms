@@ -24,7 +24,7 @@ class HomeView extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              // Get.toNamed(RoutesName.favorites);
+              Get.toNamed(RoutesName.favorites);
             },
             icon: const Icon(Icons.favorite_border),
           )

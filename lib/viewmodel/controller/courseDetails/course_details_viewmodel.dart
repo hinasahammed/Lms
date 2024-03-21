@@ -121,4 +121,35 @@ class CourseDetailsViewModel extends GetxController {
       );
     });
   }
+
+  void addToFavorite(
+      {required String courseName, required BuildContext context}) async {
+    final pref = await SharedPreferences.getInstance();
+    var favoriteList = pref.getStringList("favorite_course");
+    if (favoriteList == null || favoriteList.isEmpty || favoriteList == []) {
+      pref.setStringList(
+        "favorite_course",
+        [
+          courseName,
+        ],
+      );
+      if (context.mounted) {
+        Utils.showSnackbarToast(
+            context, "Added to favorite", Icons.check_circle);
+      }
+    } else {
+      if (favoriteList.contains(courseName)) {
+        if (context.mounted) {
+          Utils.showSnackbarToast(
+              context, "Already in your favorite", Icons.check_circle);
+        }
+      } else {
+        favoriteList.add(courseName);
+        if (context.mounted) {
+          Utils.showSnackbarToast(
+              context, "Added to favorite", Icons.check_circle);
+        }
+      }
+    }
+  }
 }

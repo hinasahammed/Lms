@@ -106,22 +106,48 @@ class CourseDetailsView extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(
-              width: size.width,
-              height: 50,
-              child: CustomButton(
-                // status:
-                //     courseDetailsViewModel.enrolledStatusResponse.value,
-                btntitle: 'Enroll now',
-                backColor: theme.colorScheme.primary,
-                titleColor: theme.colorScheme.onPrimary,
-                onPressed: () {
-                  courseDetailsViewModel.enrollNowSheet(
-                    context,
-                    courseData.courseTitle ?? '',
-                  );
-                },
-              ),
+            Row(
+              children: [
+                Expanded(
+                  child: SizedBox(
+                    height: 50,
+                    child: CustomButton(
+                      btntitle: 'Enroll now',
+                      backColor: theme.colorScheme.primary,
+                      titleColor: theme.colorScheme.onPrimary,
+                      onPressed: () {
+                        courseDetailsViewModel.enrollNowSheet(
+                          context,
+                          courseData.courseTitle ?? '',
+                        );
+                      },
+                    ),
+                  ),
+                ),
+                const Gap(10),
+                SizedBox(
+                  height: 50,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor:
+                          theme.colorScheme.onBackground.withOpacity(.1),
+                      foregroundColor: theme.colorScheme.primary,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                    onPressed: () {
+                      courseDetailsViewModel.addToFavorite(
+                        courseName: courseData.courseTitle ?? '',
+                        context: context,
+                      );
+                    },
+                    child: const Icon(
+                      Icons.favorite_border,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ],
         ),
