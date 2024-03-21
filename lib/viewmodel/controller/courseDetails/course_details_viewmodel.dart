@@ -12,6 +12,7 @@ class CourseDetailsViewModel extends GetxController {
   Rx<Status> reqResponse = Status.completed.obs;
   RxList<LmsCourseModel> courseList = <LmsCourseModel>[].obs;
   List<String> allEnrolledCourse = [];
+  RxBool isFavorite = false.obs;
 
   final emailController = TextEditingController().obs;
   final mobController = TextEditingController().obs;
@@ -133,6 +134,7 @@ class CourseDetailsViewModel extends GetxController {
           courseName,
         ],
       );
+      isFavorite.value = await getIsFavorite(courseName);
       if (context.mounted) {
         Utils.showSnackbarToast(
             context, "Added to favorite", Icons.check_circle);
@@ -145,10 +147,50 @@ class CourseDetailsViewModel extends GetxController {
         }
       } else {
         favoriteList.add(courseName);
+        isFavorite.value = await getIsFavorite(courseName);
+
         if (context.mounted) {
           Utils.showSnackbarToast(
               context, "Added to favorite", Icons.check_circle);
         }
+      }
+    }
+  }
+
+  Future<bool> getIsFavorite(String courseName) async {
+    final pref = await SharedPreferences.getInstance();
+    final favList = pref.getStringList("favorite_course");
+    if (favList != null) {
+      return favList.contains(courseName);
+    } else {
+      return false;
+    }
+  }
+
+  void removeFavoriteItem(BuildContext context, String courseName) async {
+    final pref = await SharedPreferences.getInstance();
+    List<String>? favorite = pref.getStringList("favorite_course");
+    if (favorite == null || favorite.isEmpty) {
+      if (context.mounted) {
+        Utils.showSnackbarToast(
+          context,
+          "There is no item to remove",
+          Icons.error,
+        );
+      }
+    } else {
+      favorite.remove(courseName);
+      await pref.setStringList(
+        "favorite_course",
+        favorite,
+      );
+      isFavorite.value = await getIsFavorite(courseName);
+      if (context.mounted) {
+        Utils.showSnackbarToast(
+          context,
+          "Removed from favorites",
+          Icons.check_circle,
+        );
       }
     }
   }

@@ -108,12 +108,11 @@ class EnrollAddingSheet extends StatelessWidget {
                         backColor: theme.colorScheme.primary,
                         titleColor: theme.colorScheme.onPrimary,
                         onPressed: () {
-                          courseDetailsViewModel.enrollCourseNow(
-                            context,
-                          );
-                          // if (_formKey.currentState!.validate()) {
-
-                          // }
+                          if (_formKey.currentState!.validate()) {
+                            courseDetailsViewModel.enrollCourseNow(
+                              context,
+                            );
+                          }
                         },
                       ),
                     ),

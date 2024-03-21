@@ -21,19 +21,21 @@ class _FavoriteViewState extends State<FavoriteView> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Favorites'),
       ),
-      body: Obx(
-        () => ListView.builder(
-          padding: const EdgeInsets.all(16),
-          itemCount: favoriteViewModel.favoriteList.length,
-          itemBuilder: (context, index) {
-            var data = favoriteViewModel.favoriteList[index];
-            if (data == [] || data == null) {
-              return const NoFavoriteItemUi();
-            } else {
+      body: Obx(() {
+        if (favoriteViewModel.favoriteList.isEmpty) {
+          return const NoFavoriteItemUi();
+        } else {
+          return ListView.builder(
+            padding: const EdgeInsets.all(16),
+            itemCount: favoriteViewModel.favoriteList.length,
+            itemBuilder: (context, index) {
+              var data = favoriteViewModel.favoriteList[index];
+
               return Card(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -60,10 +62,10 @@ class _FavoriteViewState extends State<FavoriteView> {
                   ),
                 ),
               );
-            }
-          },
-        ),
-      ),
+            },
+          );
+        }
+      }),
     );
   }
 }
