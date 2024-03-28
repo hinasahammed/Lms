@@ -17,7 +17,6 @@ class AccountView extends StatefulWidget {
 }
 
 class _AccountViewState extends State<AccountView> {
-
   final _getStorage = GetStorage();
   SharedPreferences? _preferences;
 
@@ -32,9 +31,12 @@ class _AccountViewState extends State<AccountView> {
     setState(() {});
   }
 
+  final storage = GetStorage();
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final userId = storage.read("user_id") ?? '';
     if (_preferences == null) {
       return const Scaffold(
         body: Center(child: CircularProgressIndicator()),
@@ -56,6 +58,13 @@ class _AccountViewState extends State<AccountView> {
             Text(
               'Hi,',
               style: theme.textTheme.titleLarge!.copyWith(
+                color: theme.colorScheme.onBackground,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            Text(
+              userId.toString(),
+              style: theme.textTheme.bodyLarge!.copyWith(
                 color: theme.colorScheme.onBackground,
                 fontWeight: FontWeight.w500,
               ),

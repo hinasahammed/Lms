@@ -69,9 +69,6 @@ class LoginViewModel extends GetxController {
     final pref = await SharedPreferences.getInstance();
     final storage = GetStorage();
     storage.write("user_id", userId);
-    var value = storage.read("user_id");
-    print(value);
-    pref.setInt("user_id", userId);
     pref.setBool('isLogedin', value);
   }
 

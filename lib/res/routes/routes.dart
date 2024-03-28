@@ -40,7 +40,7 @@ class Routes {
         ),
         GetPage(
           name: RoutesName.home,
-          page: () => HomeView(),
+          page: () => const HomeView(),
         ),
         GetPage(
           name: RoutesName.search,

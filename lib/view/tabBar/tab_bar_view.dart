@@ -18,7 +18,7 @@ class _CustomTabBarViewState extends State<CustomTabBarView> {
   var currentIndex = 0;
 
   final List _pages = [
-    HomeView(),
+    const HomeView(),
     const SearchView(),
     const EnrolledView(),
     const AccountView(),
@@ -31,7 +31,6 @@ class _CustomTabBarViewState extends State<CustomTabBarView> {
   }
 
   final courseDetailsViewModel = Get.put(CourseDetailsViewModel());
- 
 
   @override
   Widget build(BuildContext context) {

@@ -16,6 +16,7 @@ class AccountServices {
         () async {
           pref
               .setBool('isLogedin', false)
+              .then((value) => pref.remove("enrolledCourse"))
               .then((value) => Get.offAllNamed(RoutesName.login));
         },
         DialogType.question,

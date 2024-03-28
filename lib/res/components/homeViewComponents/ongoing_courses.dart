@@ -48,9 +48,13 @@ class _OngoingCoursesState extends State<OngoingCourses> {
         } else if (!snapshot.hasData ||
             snapshot.data == null ||
             snapshot.data!.isEmpty) {
-          return const NoCourseDataUi(
-            title: "No enrolled course!",
-            subTitle: "You haven't enrolled any course",
+          return Center(
+            child: Text(
+              "No enrolled course!",
+              style: theme.textTheme.bodyLarge!.copyWith(
+                color: theme.colorScheme.onBackground,
+              ),
+            ),
           );
         } else {
           final List<String> allEnrolledCourses =
@@ -60,9 +64,13 @@ class _OngoingCoursesState extends State<OngoingCourses> {
                   (course) => allEnrolledCourses.contains(course.courseTitle))
               .toList();
           if (enrolledCourses.isEmpty || enrolledCourses == []) {
-            return const NoCourseDataUi(
-              title: "No enrolled course!",
-              subTitle: "You haven't enrolled any course",
+            return Center(
+              child: Text(
+                "No enrolled course!",
+                style: theme.textTheme.bodyLarge!.copyWith(
+                  color: theme.colorScheme.onBackground,
+                ),
+              ),
             );
           } else {
             return ListView.builder(
