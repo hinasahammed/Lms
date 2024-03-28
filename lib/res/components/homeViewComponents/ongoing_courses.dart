@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:lms/models/lms_course_model/lms_course_model.dart';
 import 'package:lms/res/components/commonWidget/shimmer_list_ui.dart';
 import 'package:lms/res/components/enrolledViewComponents/enrolled_course_details.dart';
-import 'package:lms/res/components/enrolledViewComponents/no_enrolled_course_ui.dart';
 import 'package:lms/viewmodel/controller/courseDetails/course_details_viewmodel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shimmer/shimmer.dart';
