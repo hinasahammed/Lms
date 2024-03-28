@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:lms/data/response/status.dart';
 import 'package:lms/repository/login/login_repo.dart';
 import 'package:lms/res/routes/routes_name.dart';
@@ -66,6 +67,10 @@ class LoginViewModel extends GetxController {
 
   void setLogedin(bool value, int userId) async {
     final pref = await SharedPreferences.getInstance();
+    final storage = GetStorage();
+    storage.write("user_id", userId);
+    var value = storage.read("user_id");
+    print(value);
     pref.setInt("user_id", userId);
     pref.setBool('isLogedin', value);
   }

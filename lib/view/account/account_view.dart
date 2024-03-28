@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
@@ -18,7 +17,6 @@ class AccountView extends StatefulWidget {
 }
 
 class _AccountViewState extends State<AccountView> {
-  final auth = FirebaseAuth.instance;
 
   final _getStorage = GetStorage();
   SharedPreferences? _preferences;
@@ -91,6 +89,7 @@ class _AccountViewState extends State<AccountView> {
               },
               title: 'Favorites',
             ),
+            const Gap(10),
             AccountTile(
               title: 'Total enrolled',
               trailing: Container(

@@ -1,19 +1,26 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:lms/res/components/homeViewComponents/ongoing_courses.dart';
 import 'package:lms/res/components/homeViewComponents/popular_course.dart';
 import 'package:lms/res/routes/routes_name.dart';
 
-class HomeView extends StatelessWidget {
-  HomeView({super.key});
+class HomeView extends StatefulWidget {
+  const HomeView({super.key});
 
-  final auth = FirebaseAuth.instance;
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
+  final storage = GetStorage();
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final size = MediaQuery.sizeOf(context);
+    final userId = storage.read("user_id") ?? '';
     return Scaffold(
       appBar: AppBar(
         title: const Text('Lms'),
@@ -41,6 +48,12 @@ class HomeView extends StatelessWidget {
             Text(
               'Welcome!',
               style: theme.textTheme.titleLarge!.copyWith(
+                color: theme.colorScheme.onBackground,
+              ),
+            ),
+            Text(
+              userId.toString(),
+              style: theme.textTheme.bodyLarge!.copyWith(
                 color: theme.colorScheme.onBackground,
               ),
             ),
