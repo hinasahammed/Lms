@@ -41,9 +41,6 @@ dependencies:
   google_nav_bar: ^5.0.6
   cached_network_image: ^3.3.1
   shimmer: ^3.0.0
-  firebase_core: ^2.27.0
-  firebase_auth: ^4.17.8
-  cloud_firestore: ^4.15.8
   shared_preferences: ^2.2.2
   awesome_dialog: ^3.2.0
   video_player: ^2.8.3  

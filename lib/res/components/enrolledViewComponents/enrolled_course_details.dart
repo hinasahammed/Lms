@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:lms/models/lms_course_model/lms_course_model.dart';
@@ -21,7 +20,6 @@ class _EnrolledCourseDetailsState extends State<EnrolledCourseDetails> {
   double progressValue = 0.0;
   String videoUrl = '';
 
-  final auth = FirebaseAuth.instance;
 
   @override
   void initState() {
